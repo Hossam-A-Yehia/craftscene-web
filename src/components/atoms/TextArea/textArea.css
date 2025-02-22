@@ -1,0 +1,15 @@
+.textarea {
+  @apply w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none duration-300 transition placeholder:text-sm;
+}
+
+.textarea-error {
+  @apply border-danger focus:ring-1 focus:ring-danger;
+}
+
+.textarea-valid {
+  @apply border-success focus:ring-1 focus:ring-success;
+}
+
+.textarea-default {
+  @apply focus:ring-1 focus:ring-primary;
+}

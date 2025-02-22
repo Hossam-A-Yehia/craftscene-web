@@ -1,0 +1,40 @@
+.input-password-icon {
+    @apply absolute inset-y-0 pt-4 right-0 px-3 text-sm text-gray-600 hover:text-gray-800 rtl:left-0;
+  }
+  
+  .form-heading {
+    @apply text-center text-lg font-semibold text-main;
+  }
+  
+  .form-description {
+    @apply text-secondary text-center text-sm m-2;
+  }
+  
+  .form-field-wrapper {
+    @apply relative;
+  }
+  
+  .forgot-password-link {
+    @apply flex items-center justify-end;
+  }
+  
+  .or-divider {
+    @apply text-center my-2 text-sm;
+  }
+  
+  .social-button-wrapper {
+    @apply mt-4 flex flex-col gap-2;
+  }
+  
+  .social-button {
+    @apply bg-slate-200 text-black hover:bg-slate-300;
+  }
+  
+  .signup-link {
+    @apply text-center mt-3 text-sm;
+  }
+  
+  .button-wrapper {
+    @apply mt-4;
+  }
+  

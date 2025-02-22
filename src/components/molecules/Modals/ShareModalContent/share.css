@@ -1,0 +1,27 @@
+
+  .Demo__some-network {
+    vertical-align: top;
+    display: inline-block;
+    margin-right: 10px;
+    text-align: center;
+  }
+  
+  .Demo__some-network__share-count {
+    white-space: nowrap;
+    overflow: visible;
+    width: 0;
+    font-size: 12px;
+  }
+  
+  .Demo__some-network__share-button {
+    cursor: pointer;
+  }
+  
+  .Demo__some-network__share-button:hover:not(:active) {
+    opacity: 0.75;
+  }
+  
+  .Demo__some-network__custom-icon {
+    width: 40px;
+    height: 40px;
+  }

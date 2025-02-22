@@ -1,0 +1,24 @@
+.input-password-icon {
+    @apply absolute inset-y-0 pt-4 right-0 px-3 text-sm text-gray-600 hover:text-gray-800 rtl:left-0;
+  }
+  
+  .form-heading {
+    @apply text-center text-lg font-semibold text-main;
+  }
+  
+  .form-description {
+    @apply text-secondary text-center text-sm m-2;
+  }
+  
+  .form-field-wrapper {
+    @apply relative;
+  }
+
+  .signup-link {
+    @apply text-center mt-3 text-sm;
+  }
+  
+  .button-wrapper {
+    @apply mt-4;
+  }
+  

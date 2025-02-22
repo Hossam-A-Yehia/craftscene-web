@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'Allura';
+  src: url('/fonts/Allura-Regular.woff2') format('woff2'),
+       url('/fonts/Allura-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dir-ltr {
+  direction: ltr;
+}
+
+.dir-rtl {
+  direction: rtl;
+}
+html {
+  scroll-behavior: smooth
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto px-4;
+    max-width: 100%;
+  }
+
+  @screen sm {
+    .container {
+      max-width: 640px;
+    }
+  }
+
+  @screen md {
+    .container {
+      max-width: 768px;
+    }
+  }
+
+  @screen lg {
+    .container {
+      max-width: 1024px;
+    }
+  }
+
+  @screen xl {
+    .container {
+      max-width: 1200px;
+    }
+  }
+
+  @screen 2xl {
+    .container {
+      max-width: 1440px;
+    }
+  }
+}
