@@ -137,7 +137,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
           {
             icon: <AiFillProduct className="w-4 h-4 text-orange-500" />,
             label: t("home.header.incoming_orders"),
-            href: `/incoming-orders/${userId}`,
+            href: `/incoming-orders`,
           },
         ]
       : []),
