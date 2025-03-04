@@ -33,6 +33,7 @@ export interface InputProps {
   readOnly?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   disabled?: boolean;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export interface TextAreaProps extends Omit<InputProps, "type" | "onChange"> {

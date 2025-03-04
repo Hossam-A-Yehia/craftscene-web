@@ -38,6 +38,7 @@ const BasicInfoForm = ({
   setCurrentForm: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const {
+    setFieldTouched,
     values,
     errors,
     touched,
@@ -170,6 +171,7 @@ const BasicInfoForm = ({
               errors={errors.business_name}
               required
               data-testid="business_name"
+              onBlur={() => setFieldTouched("business_name", true)}
             />
             <FormField
               value={values.business_email}
@@ -181,6 +183,7 @@ const BasicInfoForm = ({
               touched={touched.business_email}
               errors={errors.business_email}
               required
+              onBlur={() => setFieldTouched("business_email", true)}
             />
             <FormField
               value={values.phone}
@@ -192,6 +195,7 @@ const BasicInfoForm = ({
               touched={touched.phone}
               errors={errors.phone}
               required
+              onBlur={() => setFieldTouched("phone", true)}
             />
             <FormField
               value={values.hotline}
@@ -202,6 +206,7 @@ const BasicInfoForm = ({
               placeholder={t("business_profile_form.basic_form.hotline")}
               touched={touched.hotline}
               errors={errors.hotline}
+              onBlur={() => setFieldTouched("hotline", true)}
             />
             <SelectInput
               dataTestid="country_id"

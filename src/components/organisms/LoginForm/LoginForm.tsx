@@ -61,8 +61,10 @@ const LoginForm: React.FC = () => {
         initialValues={{ emailOrPhone: "", password: "" }}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
+        validateOnBlur={true}
+        validateOnChange={true}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, setFieldTouched }) => (
           <Form className="space-y-4">
             <FormField
               id="emailOrPhone"
@@ -72,6 +74,7 @@ const LoginForm: React.FC = () => {
               placeholder={t("auth.login.placeholder_email_or_phone")}
               touched={touched.emailOrPhone}
               errors={errors.emailOrPhone}
+              onBlur={() => setFieldTouched("emailOrPhone", true)}
             />
             <div className="form-field-wrapper">
               <FormField
@@ -82,7 +85,9 @@ const LoginForm: React.FC = () => {
                 placeholder={t("auth.login.placeholder_password")}
                 touched={touched.password}
                 errors={errors.password}
+                onBlur={() => setFieldTouched("password", true)}
               />
+
               <button
                 data-testid="eye-button"
                 type="button"

@@ -67,7 +67,7 @@
       "referral_code": "Referral Code",
       "placeholder_referral_code": "Enter Referral Code",
       "invalid_email": "This email is invalid",
-      "invalid_phone": "This phone is invalid, Please Enter Your Phone Number begin with (+)",
+      "invalid_phone": "Please Enter a valid Phone (8-15 digits) beginning with (+)Country code",
       "email_required": "Please Enter Your Email",
       "phone_required": "Please Enter Your Phone Number begin with (+)",
       "password_min_length": "Your password must be at least 6 characters in length",
@@ -78,7 +78,9 @@
       "city_is_required": "City is required",
       "first_name_min_length": "First name must be at least 2 characters long.",
       "last_name_min_length": "Last name must be at least 2 characters long.",
-      "email_or_phone_required": "Please Enter Your Email or Phone Number begin with (+)"
+      "email_or_phone_required": "Please Enter Your Email or Phone Number begin with (+)",
+      "passwords_must_match": "Passwords must match",
+      "password_requirements": "The password must be at least 6 characters long and include an uppercase letter, a lowercase letter, a number, and a special character"
     },
     "forget_password": {
       "title": "Forget Password",

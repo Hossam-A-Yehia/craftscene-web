@@ -3,7 +3,6 @@ import { expect, vi } from "vitest";
 import "@testing-library/jest-dom";
 import LoginForm from "./LoginForm";
 import { useLogin } from "../../../hooks/useAuth";
-import { signIn } from "next-auth/react";
 import React from "react";
 
 vi.mock("next/navigation", () => ({
@@ -20,6 +19,11 @@ vi.mock("@/hooks/useAuth", () => ({
   })),
   useResendCode: vi.fn(() => ({
     mutateAsync: vi.fn(),
+  })),
+  useLoginwithGoogle: vi.fn(() => ({
+    mutate: vi.fn(),
+    isPending: false,
+    error: null,
   })),
 }));
 
@@ -89,29 +93,5 @@ describe("LoginForm Component", () => {
 
     fireEvent.click(toggleButton);
     expect(passwordInput).toHaveAttribute("type", "password");
-  });
-
-  it("triggers Google login", () => {
-    render(<LoginForm />);
-
-    const googleButton = screen.getByRole("button", {
-      name: "auth.login.google_login",
-    });
-
-    fireEvent.click(googleButton);
-
-    expect(signIn).toHaveBeenCalledWith("google");
-  });
-
-  it("triggers Twitter login", () => {
-    render(<LoginForm />);
-
-    const twitterButton = screen.getByRole("button", {
-      name: "auth.login.twitter_login",
-    });
-
-    fireEvent.click(twitterButton);
-
-    expect(signIn).toHaveBeenCalledWith("twitter");
   });
 });

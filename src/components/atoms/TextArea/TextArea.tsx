@@ -25,11 +25,7 @@ const TextArea: React.FC<TextAreaProps> = ({
     required={required}
     data-testid={id}
     className={`textarea ${
-      errors && touched
-        ? "textarea-error"
-        : touched
-        ? "textarea-valid"
-        : "textarea-default"
+      errors && touched ? "textarea-error" : "textarea-default"
     } resize-none`}
   />
 );

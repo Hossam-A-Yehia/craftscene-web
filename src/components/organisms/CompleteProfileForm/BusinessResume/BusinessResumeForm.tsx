@@ -70,11 +70,10 @@ const BusinessResumeForm = ({
             )}
             touched={touched.business_desc_ar}
             errors={errors.business_desc_ar}
-            required
           />
           <div className="flex flex-col gap-1">
             <h2
-              className="text-base font-normal"
+              className="text-base font-normal after:content-['*'] after:text-red-500"
               data-testid="upload-docs-title"
             >
               {t(
@@ -99,7 +98,13 @@ const BusinessResumeForm = ({
           </div>
         </div>
         <div className="max-w-[450px] mx-auto flex flex-col items-center gap-4 ">
-          <Button type="submit" variant="main" disabled={!isValid}>
+          <Button
+            type="submit"
+            variant="main"
+            disabled={
+              values.files.length === 0 || values.business_desc_en == ""
+            }
+          >
             {t("business_profile_form.shared.next")}
           </Button>{" "}
           <Button
@@ -190,7 +195,7 @@ function Attachment({
                   id={`files.${index}.type`}
                   label=""
                   placeholder={"Select file type"}
-                  additionalClasses="!mb-0"
+                  additionalClasses="!mb-0 min-w-[300px] mx-5"
                   required
                 />{" "}
               </div>

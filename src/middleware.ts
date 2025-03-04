@@ -10,7 +10,6 @@ const loggedInRoutes = [
   "/add-branches",
   "/branches",
   "/interests",
-  "/business-user",
 ];
 const loggedOutRoutes = [
   "/login",

@@ -19,6 +19,7 @@ const FormField: React.FC<FormFieldProps> = ({
   value,
   disabled,
   dataTestid,
+  onBlur,
 }) => (
   <div className="flex flex-col mb-2" data-testid={dataTestid}>
     {label && (
@@ -32,6 +33,7 @@ const FormField: React.FC<FormFieldProps> = ({
           <Input
             {...field}
             id={id}
+            onBlur={onBlur}
             type={type as string}
             required={required}
             placeholder={placeholder}

@@ -43,7 +43,7 @@ const ResgisterForm: React.FC = () => {
         phone: values.phone ? values.phone : undefined,
         password: values.password,
         user_type: values.user_type,
-        referral_code: values.referral_code
+        referrer_code: values.referral_code
           ? Number(values.referral_code)
           : undefined,
         confirm_password: values.confirm_password,
@@ -76,7 +76,7 @@ const ResgisterForm: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        {({ errors, touched, values, setFieldValue }) => (
+        {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
           <Form className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <FormField
@@ -88,6 +88,7 @@ const ResgisterForm: React.FC = () => {
                 placeholder={t("auth.register.first_name")}
                 touched={touched.first_name}
                 errors={errors.first_name}
+                onBlur={() => setFieldTouched("first_name", true)}
               />
 
               <FormField
@@ -99,6 +100,7 @@ const ResgisterForm: React.FC = () => {
                 placeholder={t("auth.register.last_name")}
                 touched={touched.last_name}
                 errors={errors.last_name}
+                onBlur={() => setFieldTouched("last_name", true)}
               />
             </div>
             <SelectInput
@@ -123,6 +125,7 @@ const ResgisterForm: React.FC = () => {
               placeholder={t("auth.register.email")}
               touched={touched.email}
               errors={errors.email}
+              onBlur={() => setFieldTouched("email", true)}
             />
             <FormField
               id="phone"
@@ -132,6 +135,7 @@ const ResgisterForm: React.FC = () => {
               placeholder={t("auth.register.phone")}
               touched={touched.phone}
               errors={errors.phone}
+              onBlur={() => setFieldTouched("phone", true)}
             />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <SelectInput
@@ -175,6 +179,7 @@ const ResgisterForm: React.FC = () => {
                 placeholder={t("auth.register.placeholder_password")}
                 touched={touched.password}
                 errors={errors.password}
+                onBlur={() => setFieldTouched("password", true)}
               />
               <button
                 type="button"
@@ -195,6 +200,7 @@ const ResgisterForm: React.FC = () => {
                 placeholder={t("auth.register.placeholder_password")}
                 touched={touched.confirm_password}
                 errors={errors.confirm_password}
+                onBlur={() => setFieldTouched("confirm_password", true)}
               />
               <button
                 data-testid="eye-button"
@@ -214,6 +220,7 @@ const ResgisterForm: React.FC = () => {
               placeholder={t("auth.register.placeholder_referral_code")}
               touched={touched.referral_code}
               errors={errors.referral_code}
+              onBlur={() => setFieldTouched("referral_code", true)}
             />
 
             <Button

@@ -113,7 +113,6 @@ const BusinessHistoryForm = ({
           <RadioGroup
             options={priceRangeOptions}
             label={t("business_profile_form.business_history_form.price_range")}
-            required
             name="price_range"
             selectedValue={1}
             error={errors.price_range as string}
@@ -125,7 +124,6 @@ const BusinessHistoryForm = ({
             label={t(
               "business_profile_form.business_history_form.volume_of_work"
             )}
-            required
             options={volumeOfWorkOptions}
             placeholder={t(
               "business_profile_form.business_history_form.volume_of_work_placeholder"
@@ -157,7 +155,6 @@ const BusinessHistoryForm = ({
             label={t(
               "business_profile_form.business_history_form.years_of_experience"
             )}
-            required
             options={yearsOfExperienceOptions}
             placeholder={t(
               "business_profile_form.business_history_form.years_of_experience_placeholder"
@@ -184,12 +181,7 @@ const BusinessHistoryForm = ({
 
         <div className="max-w-[575px] mx-auto mb-8"></div>
         <div className="max-w-[450px] mx-auto flex flex-col items-center gap-4 ">
-          <Button
-            type="submit"
-            variant="main"
-            disabled={isValid}
-            dataTestid="next-form"
-          >
+          <Button type="submit" variant="main" dataTestid="next-form">
             {t("business_profile_form.shared.next")}
           </Button>{" "}
           <Button

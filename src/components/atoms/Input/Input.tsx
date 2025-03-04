@@ -15,8 +15,10 @@ const Input: React.FC<InputProps> = ({
   readOnly,
   onClick,
   disabled,
+  onBlur,
 }) => (
   <input
+    onBlur={onBlur}
     disabled={disabled}
     name={name}
     id={id}

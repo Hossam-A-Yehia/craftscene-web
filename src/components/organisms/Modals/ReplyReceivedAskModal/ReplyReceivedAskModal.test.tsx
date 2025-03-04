@@ -60,7 +60,7 @@ describe("ReplyInvitationModal", () => {
         invitableId={1}
       />
     );
-    expect(screen.getByTestId("reply-modal-content")).toBeDefined();
+    expect(screen.getByTestId("reply-invitation-modal-content")).toBeDefined();
   });
 
   it("should call onCancel when cancel button is clicked", () => {
@@ -72,7 +72,7 @@ describe("ReplyInvitationModal", () => {
         invitableId={1}
       />
     );
-    fireEvent.click(screen.getByTestId("cancel-button"));
+    fireEvent.click(screen.getByTestId("cancel-button-reply"));
     expect(onCancelMock).toHaveBeenCalledTimes(1);
   });
 });

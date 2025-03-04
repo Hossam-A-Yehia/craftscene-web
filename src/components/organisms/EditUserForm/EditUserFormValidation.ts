@@ -2,12 +2,17 @@ import * as Yup from "yup";
 import { t } from "i18next";
 
 export const validationSchema = Yup.object().shape({
-  first_name: Yup.string().required(
-    t("edit_user.validation.first_name_is_required")
-  ),
-  last_name: Yup.string().required(
-    t("edit_user.validation.last_name_is_required")
-  ),
+  first_name: Yup.string()
+  .trim()
+  .min(3, t("auth.register.first_name_min_length"))
+  .matches(/^[A-Za-z\s]+$/, t("Allows only letters and spaces")) 
+  .required(t("edit_user.validation.first_name_is_required")),
+
+  last_name: Yup.string()
+    .trim()
+    .min(3, t("auth.register.last_name_min_length"))
+    .matches(/^[A-Za-z\s]+$/, t("Allows only letters and spaces")) 
+    .required(t("edit_user.validation.last_name_is_required")),
   email: Yup.string()
     .email(t("edit_user.validation.invalid_email"))
     .required(t("edit_user.validation.email_required")),

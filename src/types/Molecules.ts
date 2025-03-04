@@ -14,6 +14,7 @@ export interface FormFieldProps {
   value?: string;
   disabled?: boolean;
   dataTestid?: string;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 export interface OptionType {

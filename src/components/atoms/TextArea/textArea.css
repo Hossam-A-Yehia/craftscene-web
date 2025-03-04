@@ -6,10 +6,6 @@
   @apply border-danger focus:ring-1 focus:ring-danger;
 }
 
-.textarea-valid {
-  @apply border-success focus:ring-1 focus:ring-success;
-}
-
 .textarea-default {
   @apply focus:ring-1 focus:ring-primary;
 }

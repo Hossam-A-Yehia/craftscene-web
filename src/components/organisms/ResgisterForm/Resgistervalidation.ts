@@ -6,14 +6,15 @@ export const validationSchema = Yup.object()
   .shape({
     first_name: Yup.string()
       .trim()
-      .min(2, t("auth.register.first_name_min_length"))
-      .required(t("auth.register.first_name_is_required")),
+      .min(3, t("auth.register.first_name_min_length"))
+      .matches(/^[A-Za-z\s]+$/, t("Allows only letters and spaces"))
+      .required(t("edit_user.validation.first_name_is_required")),
 
     last_name: Yup.string()
       .trim()
-      .min(2, t("auth.register.last_name_min_length"))
-      .required(t("auth.register.last_name_is_required")),
-
+      .min(3, t("auth.register.last_name_min_length"))
+      .matches(/^[A-Za-z\s]+$/, t("Allows only letters and spaces"))
+      .required(t("edit_user.validation.last_name_is_required")),
     email: Yup.string()
       .email(t("auth.register.invalid_email"))
       .when("user_type", {
@@ -24,21 +25,27 @@ export const validationSchema = Yup.object()
       }),
 
     phone: Yup.string()
-      .matches(/^(?:\+|00)\d{1,4}\d{11}$/, t("auth.register.invalid_phone"))
+      .matches(/^\+?[0-9]{8,15}$/, t("auth.register.invalid_phone"))
       .nullable(),
 
     user_type: Yup.string().required(t("auth.register.user_type_is_required")),
 
     password: Yup.string()
       .required(t("auth.login.password_is_required"))
-      .min(6, t("auth.login.password_min_length")),
-
+      .test(
+        "strong-password",
+        t("auth.register.password_requirements"),
+        (value) =>
+          !!value &&
+          value.length >= 6 &&
+          /[A-Z]/.test(value) &&
+          /[a-z]/.test(value) &&
+          /[0-9]/.test(value) &&
+          /[!@#$%^&*(),.?":{}|<>]/.test(value)
+      ),
     confirm_password: Yup.string()
-      .oneOf(
-        [Yup.ref("password")],
-        t("auth.reset_password.passwords_must_match")
-      )
-      .required(t("auth.reset_password.password_is_required")),
+      .oneOf([Yup.ref("password")], t("auth.register.passwords_must_match"))
+      .required(t("auth.register.password_is_required")),
 
     referral_code: Yup.number()
       .typeError("Referral code must be a number")

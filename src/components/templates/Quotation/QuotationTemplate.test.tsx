@@ -10,6 +10,7 @@ import { useFetchUser } from "../../../hooks/useUser";
 import { useQueryClient } from "@tanstack/react-query";
 import { UserStatus, RFQStatus } from "../../../constants/enums/rfqsEnum";
 import React from "react";
+import { UserProvider } from "../../../context/UserContext";
 
 vi.mock("@tanstack/react-query", () => ({
   useQueryClient: vi.fn(),
@@ -108,19 +109,31 @@ describe("QuotationTemplate", () => {
       isLoading: true,
     });
 
-    render(<QuotationTemplate quotationId="1" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
     expect(screen.getByTestId("loader")).toBeDefined();
   });
 
   it("renders quotation details correctly", () => {
-    render(<QuotationTemplate quotationId="2" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
     expect(screen.getByTestId("date-time")).toBeDefined();
     expect(screen.getByTestId("rfq-status-label")).toBeDefined();
     expect(screen.getByTestId("rfq-files-label")).toBeDefined();
   });
 
   it("renders file list correctly when files exist", () => {
-    render(<QuotationTemplate quotationId="2" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
 
     expect(screen.getByTestId("rfq-file-1")).toBeDefined();
     expect(screen.getByTestId("rfq-file-2")).toBeDefined();
@@ -144,7 +157,11 @@ describe("QuotationTemplate", () => {
       isLoading: false,
     });
 
-    render(<QuotationTemplate quotationId="2" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
     expect(screen.getByTestId("rfq-no-files")).toBeDefined();
   });
 
@@ -167,7 +184,11 @@ describe("QuotationTemplate", () => {
       isLoading: false,
     });
 
-    render(<QuotationTemplate quotationId="2" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
 
     expect(screen.getByTestId("accept-button")).toBeDisabled();
     expect(screen.getByTestId("decline-button")).toBeDisabled();
@@ -187,14 +208,22 @@ describe("QuotationTemplate", () => {
       isLoading: false,
     });
 
-    render(<QuotationTemplate quotationId="2" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
 
     expect(screen.getByTestId("accept-button")).toBeDisabled();
     expect(screen.getByTestId("decline-button")).toBeDisabled();
   });
 
   it("renders discuss button correctly", () => {
-    render(<QuotationTemplate quotationId="2" />);
+    render(
+      <UserProvider>
+        <QuotationTemplate quotationId="2" />
+      </UserProvider>
+    );
     expect(screen.getByTestId("discuss")).toBeDefined();
   });
 });

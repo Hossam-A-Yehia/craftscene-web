@@ -1,19 +1,26 @@
 import * as Yup from "yup";
 import { t } from "i18next";
 export const BasicInfoValidationSchema = Yup.object().shape({
-  business_name: Yup.string().required("Business name is required"),
+  business_name: Yup.string()
+    .trim()
+    .min(3, "Business name must be at least 3 characters long")
+    .matches(
+      /^[A-Za-z\s]+$/,
+      "Business name must contain only letters and spaces"
+    )
+    .required("Business name is required"),
   business_email: Yup.string().email().required(),
   phone: Yup.string()
-    .matches(
-      /^\+?[1-9]\d{1,3}[-.\s]?\d{1,4}[-.\s]?\d{4,11}$/,
-      t("auth.register.invalid_phone")
-    )
-    .required(),
-  lang: Yup.number().required(),
+    .trim()
+    .matches(/^\+?[0-9]{8,15}$/, t("auth.register.invalid_phone"))
+    .required(t("auth.register.phone_required")),
+
   lat: Yup.number().required(),
   country_id: Yup.number().optional(),
   city_id: Yup.number().required(),
-  hotline: Yup.string().optional(),
+  hotline: Yup.string()
+    .matches(/^\d+$/, t("Allows only numbers (no letters, no special chars)"))
+    .optional(),
   categories: Yup.array()
     .of(
       Yup.object().shape({
