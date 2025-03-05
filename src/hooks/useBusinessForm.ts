@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutateEditBusinessUser } from "@/hooks/useUser";
 import { useCountryData } from "@/hooks/useCountryData";
 import { FormValues } from "@/types/UpdateBusiness";
@@ -43,10 +43,13 @@ export function useBusinessForm() {
     profile: "",
   });
 
-  const classification = userData?.business_user_detail.classifications.map(
-    (classification: any) => classification.classification
-  );
-  console.log(classification);
+  const classification = useMemo(() => {
+    return (
+      userData?.business_user_detail.classifications.map(
+        (classification: any) => classification.classification
+      ) || []
+    );
+  }, [userData]);
 
   useEffect(() => {
     if (userData) {
@@ -55,7 +58,6 @@ export function useBusinessForm() {
         business_email: userData.business_user_detail.business_email || "",
         phone: userData.business_user_detail.phone || "",
         hotline: userData.business_user_detail.hotline || "",
-
         country_id: userData?.business_user_detail.city.country_id || "",
         city_id: userData?.business_user_detail.city_id || "",
         lat: userData.business_user_detail.lat || 0,
@@ -109,7 +111,6 @@ export function useBusinessForm() {
     labelKey: "label",
     valueKey: "id",
   });
-  console.log(userData);
 
   return {
     initialValues,

@@ -33,6 +33,7 @@ interface BusinessDetailsProps {
   errors: any;
   touched: any;
   setFieldValue: (field: string, value: any) => void;
+  setFieldTouched: any;
   countryOptions: { value: string | number; label: string }[];
   cityOptions: (
     countryId: string | number
@@ -46,6 +47,7 @@ export function BusinessDetailsSection({
   countryOptions,
   cityOptions,
   setFieldValue,
+  setFieldTouched,
 }: BusinessDetailsProps) {
   const {
     priceRangeOptions,
@@ -82,6 +84,7 @@ export function BusinessDetailsSection({
           errors={errors.business_name}
           value={values.business_name}
           placeholder={t("update_business_info.business_name_placeholder")}
+          onBlur={() => setFieldTouched("business_name", true)}
         />
         <FormField
           id="business_email"
@@ -91,6 +94,7 @@ export function BusinessDetailsSection({
           placeholder={t("update_business_info.business_email_placeholder")}
           touched={touched.business_email}
           errors={errors.business_email}
+          onBlur={() => setFieldTouched("business_email", true)}
         />
         <FormField
           id="phone"
@@ -100,6 +104,7 @@ export function BusinessDetailsSection({
           errors={errors.phone}
           value={values.phone}
           placeholder={t("update_business_info.phone_placeholder")}
+          onBlur={() => setFieldTouched("phone", true)}
         />
         <FormField
           id="business_des"
@@ -109,6 +114,7 @@ export function BusinessDetailsSection({
           errors={errors.business_des}
           value={values.business_des}
           placeholder={t("update_business_info.business_des_placeholder")}
+          onBlur={() => setFieldTouched("business_des", true)}
         />
         <SelectInput
           id="country_id"
@@ -137,11 +143,11 @@ export function BusinessDetailsSection({
           placeholder={""}
           errors={errors.business_des}
           touched={touched.hotline}
+          onBlur={() => setFieldTouched("hotline", true)}
         />
         <RadioGroup
           options={priceRangeOptions}
           label={t("business_profile_form.business_history_form.price_range")}
-          required
           name="price_range"
           selectedValue={1}
           error={errors.price_range as string}
@@ -153,7 +159,6 @@ export function BusinessDetailsSection({
           label={t(
             "business_profile_form.business_history_form.volume_of_work"
           )}
-          required
           options={volumeOfWorkOptions}
           placeholder={t(
             "business_profile_form.business_history_form.volume_of_work_placeholder"
@@ -168,7 +173,6 @@ export function BusinessDetailsSection({
           label={t(
             "business_profile_form.business_history_form.number_of_employees"
           )}
-          required
           options={numberOfEmployeesOptions}
           placeholder={t(
             "business_profile_form.business_history_form.number_of_employees_placeholder"
@@ -183,7 +187,6 @@ export function BusinessDetailsSection({
           label={t(
             "business_profile_form.business_history_form.years_of_experience"
           )}
-          required
           options={yearsOfExperienceOptions}
           placeholder={t(
             "business_profile_form.business_history_form.years_of_experience_placeholder"
@@ -227,7 +230,6 @@ export function BusinessDetailsSection({
           onClick={mapModal.onOpen}
           touched={touched.hotline}
           errors={errors.hotline}
-          required
         />
         <Modal isOpen={mapModal.isOpen} onClose={mapModal.onClose}>
           <ModalHeader dataTestid="map-modal-title">

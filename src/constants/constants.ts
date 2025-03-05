@@ -123,3 +123,5 @@ export enum InvitationStatusEnum {
   DECLINE = 4,
   ACCEPTED_FOR_ANOTHER_USER = 5,
 }
+
+export const FREELANCE_ID = 719;

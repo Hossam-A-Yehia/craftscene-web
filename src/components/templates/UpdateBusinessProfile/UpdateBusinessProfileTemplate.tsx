@@ -5,6 +5,7 @@ import UpdateBusinessForm from "@/components/organisms/UpdateBusinessForm/Update
 import Text from "@/components/atoms/Text/Text";
 import UpdateUserCategories from "@/components/organisms/UpdateUserCategories/UpdateUserCategories";
 import UpdateUserServices from "@/components/organisms/UpdateUserServices/UpdateUserServices";
+import { useBusinessForm } from "@/hooks/useBusinessForm";
 
 enum Tabs {
   BUSINESS_INFO = "business info",
@@ -14,7 +15,7 @@ enum Tabs {
 
 const UpdateBusinessProfileTemplate = () => {
   const [activeTab, setActiveTab] = useState<Tabs>(Tabs.BUSINESS_INFO);
-
+  const { isSupplier } = useBusinessForm();
   return (
     <div className="min-h-screen py-10 bg-[#F6F7FC]">
       <div className="container mx-auto">
@@ -25,9 +26,7 @@ const UpdateBusinessProfileTemplate = () => {
           >
             {t("update_business_info.title")}
           </Text>
-          <p className="text-gray-600">
-            All the Lorem Ipsum generators on the Internet tend to repeat.
-          </p>
+          <p className="text-gray-600">{t("update_business_info.desc")}</p>
         </div>
         <div className="flex justify-start items-center gap-3 mb-6">
           <button
@@ -61,7 +60,9 @@ const UpdateBusinessProfileTemplate = () => {
                 : "bg-gray-200 text-gray-700"
             }`}
           >
-            {t("update_business_info.services")}
+            {isSupplier
+              ? t("update_business_info.product_groups")
+              : t("update_business_info.services")}
           </button>
         </div>
         <div>

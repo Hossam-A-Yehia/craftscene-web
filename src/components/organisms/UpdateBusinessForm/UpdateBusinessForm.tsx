@@ -110,7 +110,7 @@ export default function UpdateBusinessForm() {
       onSubmit={onSubmit}
       enableReinitialize
     >
-      {({ values, errors, touched, setFieldValue }) => (
+      {({ values, errors, touched, setFieldValue, setFieldTouched }) => (
         <Form className="space-y-6">
           <BusinessDetailsSection
             values={values}
@@ -119,6 +119,7 @@ export default function UpdateBusinessForm() {
             countryOptions={countryOptions}
             cityOptions={cityOptions}
             setFieldValue={setFieldValue}
+            setFieldTouched={setFieldTouched}
           />
           <div className="mt-4 text-center w-fit mx-auto">
             <Button type="submit" variant="main" loading={isMutatePutLoading}>

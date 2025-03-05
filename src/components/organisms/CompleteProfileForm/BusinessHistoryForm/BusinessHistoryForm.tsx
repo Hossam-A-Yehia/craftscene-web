@@ -32,9 +32,7 @@ const BusinessHistoryForm = ({
   formikProps: FormikProps<CompleteProfile>;
   setCurrentForm: React.Dispatch<React.SetStateAction<number>>;
 }) => {
-  const { values, errors, touched, handleSubmit: formikSubmit } = formikProps;
-  const isValid =
-    values.volume_of_work === 0 || values.years_of_experience === 0;
+  const { errors, touched, handleSubmit: formikSubmit } = formikProps;
   const user_type = profile?.user_type;
   const isSupplier = user_type === SUPPLIER;
   const isContractor = user_type === SERVICE_PROVIDER_CONTRACTOR;

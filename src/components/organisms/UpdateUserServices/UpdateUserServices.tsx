@@ -3,6 +3,7 @@ import UserServiceTable from "@/components/molecules/UserServices/UserServiceTab
 import { useMutateDeleteUserService } from "@/hooks/useServices";
 import { useFetchUser, useFetchUserServices } from "@/hooks/useUser";
 import { useQueryClient } from "@tanstack/react-query";
+import { t } from "i18next";
 import React from "react";
 import { toast } from "react-toastify";
 
@@ -24,7 +25,7 @@ function UpdateUserServices() {
         queryClient.invalidateQueries({
           queryKey: ["user-services", userData?.id],
         });
-        toast.info("update_user_services.deleted_succcess_message");
+        toast.info(t("update_user_services.deleted_succcess_message"));
       })
       .catch((err: any) => {
         toast.error(err.message);

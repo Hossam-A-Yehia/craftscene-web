@@ -17,6 +17,8 @@ import {
 import NoData from "@/components/molecules/NoDate/NoDate";
 import {
   CONTRACTOR_CLASSIFICATIONS,
+  CRAFTSMEN_ID,
+  FREELANCE_ID,
   NUMBER_OF_EMPLOYEES,
   PRICE_RANGE,
   SERVICE_PROVIDER_CONTRACTOR,
@@ -26,6 +28,8 @@ import {
   YEARS_OF_EXPERIENCE,
 } from "@/constants/constants";
 import { useCountryData } from "@/hooks/useCountryData";
+
+import { useFetchServices } from "@/hooks/useServices";
 const Professionals = ({
   isSearchMode,
   searchQueryFromCategories,
@@ -56,6 +60,11 @@ const Professionals = ({
   const [selectedCities, setSelectedCities] = useState<number[]>([]);
 
   const { countryOptions, cityOptionsFilter } = useCountryData();
+  const { data: service } = useFetchServices({ id: serviceId });
+  const parentServiceId =
+    service?.payload[0]?.category?.parent?.id ||
+    service?.payload[0]?.category?.id;
+  console.log(parentServiceId === CRAFTSMEN_ID);
 
   const isFilterActive =
     selectedYearsOfExperience.length > 0 ||
@@ -215,12 +224,15 @@ const Professionals = ({
               selectedOptions={selectedYearsOfExperience}
               onChange={setSelectedYearsOfExperience}
             />
-            <CheckboxGroup
-              title={t("professionals.number_of_employees")}
-              options={NUMBER_OF_EMPLOYEES}
-              selectedOptions={selectedNumberOfEmployees}
-              onChange={setSelectedNumberOfEmployees}
-            />
+            {parentServiceId !== FREELANCE_ID &&
+              parentServiceId !== CRAFTSMEN_ID && (
+                <CheckboxGroup
+                  title={t("professionals.number_of_employees")}
+                  options={NUMBER_OF_EMPLOYEES}
+                  selectedOptions={selectedNumberOfEmployees}
+                  onChange={setSelectedNumberOfEmployees}
+                />
+              )}
             <CheckboxGroup
               title={t("professionals.volum_of_work")}
               options={VOLUME_OF_WORK}

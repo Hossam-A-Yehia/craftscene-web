@@ -27,7 +27,6 @@ export const validationSchema = Yup.object()
     phone: Yup.string()
       .matches(/^\+?[0-9]{8,15}$/, t("auth.register.invalid_phone"))
       .nullable(),
-
     user_type: Yup.string().required(t("auth.register.user_type_is_required")),
 
     password: Yup.string()

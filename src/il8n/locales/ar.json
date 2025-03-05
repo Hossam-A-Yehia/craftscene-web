@@ -721,9 +721,11 @@
     "save": "حفظ"
   },
   "update_business_info": {
+    "desc": "يمكنك تعديل أو تحديث أي حقول في ملف معلومات النشاط التجاري",
     "title": "معلومات العمل",
     "categories": "الفئات",
     "services": "الخدمات",
+    "product_groups": "مجموعات المنتجات",
     "update_success_message": "تم تحديث المستخدم بنجاح!",
     "update": "تحديث",
     "business_name": "اسم العمل",

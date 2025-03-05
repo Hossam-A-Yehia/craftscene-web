@@ -11,6 +11,7 @@ import { CategoyTypesEnum } from "./ValidationSchema";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { useUser } from "@/context/UserContext";
+import { t } from "i18next";
 
 function UpdateUserCategories() {
   const queryClient = useQueryClient();
@@ -43,7 +44,7 @@ function UpdateUserCategories() {
     mutateDeleteRowAsync(categoryId)
       .then(() => {
         queryClient.invalidateQueries({ queryKey: ["userCategories"] });
-        toast.info("update_user_categories.deleted_succcess_message");
+        toast.info(t("update_user_categories.deleted_succcess_message"));
       })
       .catch((err) => {
         toast.error(err.message);

@@ -742,14 +742,16 @@
     "save": "Save"
   },
   "update_business_info": {
+    "desc": "You can edit or update any fields in a business information profile",
     "title": "Business information",
     "categories": "Categories",
     "services": "Services",
+    "product_groups": "Product groups",
     "update_success_message": "User Updated Successfully!",
     "update": "Update",
     "business_name": "Business name",
     "business_name_placeholder": "Please enter your business name",
-    "business_email": "Business name",
+    "business_email": "Business email",
     "business_email_placeholder": "Please enter your business email",
     "phone": "Business Phone",
     "phone_placeholder": "Please enter your business phone",
