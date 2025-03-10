@@ -64,7 +64,6 @@ const Professionals = ({
   const parentServiceId =
     service?.payload[0]?.category?.parent?.id ||
     service?.payload[0]?.category?.id;
-  console.log(parentServiceId === CRAFTSMEN_ID);
 
   const isFilterActive =
     selectedYearsOfExperience.length > 0 ||
@@ -143,6 +142,7 @@ const Professionals = ({
         </div>
       );
     }
+
     return data.map((professional: any) => (
       <div key={professional.id} className="col-span-1">
         <ProfessionalCard
@@ -151,6 +151,8 @@ const Professionals = ({
           profileImage={professional.logo}
           name={professional.business_name}
           location={`${professional.city[`name_${lang}`]}`}
+          email={professional?.business_email}
+          phone={professional?.phone}
         />
       </div>
     ));

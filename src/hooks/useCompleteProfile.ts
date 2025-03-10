@@ -16,6 +16,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { t } from "i18next";
 
 function generateBusinessUserDetailsFormData(profile: CompleteProfile) {
   const businessUserDetails = new FormData();
@@ -142,7 +143,7 @@ export const useBusinessProfileFlow = (values: CompleteProfile) => {
           Cookies.remove("authToken");
         }
       };
-      toast.info("business_profile_form.success_message");
+      toast.info(t("business_profile_form.success_message"));
 
       mutateCategories(businessUserCategories, {
         onSuccess: checkCompletion,

@@ -44,7 +44,6 @@ function UserServicesForm({
     (service: { service_id: number }) => service.service_id
   );
   const { mutateAsync, isPending: isMutateLoading } = useMutateAddUserService();
-  console.log(userServices);
 
   const handleSubmit = async (
     values: { service_id: { label: string; value: number }[] },
@@ -156,7 +155,9 @@ function UserServicesForm({
             </div>
             <div className="w-1/6 mt-5">
               <Button variant="main" type="submit">
-                {t("update_user_services.add_servies")}
+                {userType === SUPPLIER
+                  ? t("update_user_services.add_product_groups")
+                  : t("update_user_services.add_servies")}
               </Button>
             </div>
           </div>

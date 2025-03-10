@@ -18,7 +18,6 @@ const ReceivedAskTemplate: FC<ReceivedAskTemplateProps> = ({
     true
   );
   const receivedAsk: ReceivedAsk = receivedAskData?.data[0];
-  console.log(receivedAsk);
 
   if (isLoading) {
     return (

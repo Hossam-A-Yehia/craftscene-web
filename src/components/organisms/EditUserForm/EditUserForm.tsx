@@ -84,7 +84,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
       onSubmit={onSubmit}
       enableReinitialize
     >
-      {({ values, errors, touched, dirty }) => (
+      {({ values, errors, touched, dirty, setFieldTouched }) => (
         <Form className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="flex flex-col gap-3">
@@ -98,6 +98,8 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                 errors={errors.first_name}
                 value={values.first_name}
                 dataTestid="edit-first_name"
+                onBlur={() => setFieldTouched("first_name", true)}
+                required
               />
               <SelectInput
                 id="country_id"
@@ -108,7 +110,9 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                 error={errors.country_id}
                 touched={touched.country_id}
                 dataTestid="edit-country"
+                required
               />
+
               <FormField
                 id="email"
                 label={t("edit_user.email")}
@@ -120,6 +124,8 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                 value={values.email}
                 disabled
                 dataTestid="edit-email"
+                onBlur={() => setFieldTouched("email", true)}
+                required
               />
             </div>
             <div className="flex flex-col gap-3">
@@ -133,6 +139,8 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                 errors={errors.last_name}
                 value={values.last_name}
                 dataTestid="edit-last_name"
+                onBlur={() => setFieldTouched("last_name", true)}
+                required
               />
               <SelectInput
                 id="city_id"
@@ -143,6 +151,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                 error={errors.city_id}
                 touched={touched.city_id}
                 dataTestid="edit-city"
+                required
               />
               <FormField
                 id="phone"
@@ -155,6 +164,7 @@ const EditUserForm = ({ userId }: { userId: string }) => {
                 value={values.phone}
                 disabled
                 dataTestid="edit-phone"
+                onBlur={() => setFieldTouched("phone", true)}
               />
             </div>
           </div>

@@ -4,8 +4,8 @@ import { t } from "i18next";
 export const validationSchema = Yup.object().shape({
   branchName: Yup.string().required(t("add_address.validation.address_title")),
   phone: Yup.string()
-    .required()
-    .matches(/^\+?[1-9]\d{1,14}$/, t("add_address.validation.phone")),
+    .matches(/^\+?[0-9]{8,15}$/, t("auth.register.invalid_phone"))
+    .required(t("auth.register.invalid_phone")),
   city: Yup.string().required(t("add_address.validation.city")),
   country: Yup.string().required(t("add_address.validation.country")),
   email: Yup.string().test(

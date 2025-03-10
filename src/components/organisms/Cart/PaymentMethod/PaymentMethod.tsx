@@ -8,8 +8,8 @@ export default function PaymentMethod() {
   );
 
   const paymentMethods = [
-    { id: 1, label: t("order.checkout.cash"), disabled: true },
-    { id: 2, label: t("order.checkout.visa") },
+    { id: 1, label: t("order.checkout.cash") },
+    { id: 2, label: t("order.checkout.visa"), disabled: true },
   ];
 
   return (
@@ -26,7 +26,7 @@ export default function PaymentMethod() {
             data-testid={`payment-option-${method.id}`}
             data-selected={selectedMethod === method.label}
             data-disabled={method.disabled}
-            onClick={() => setSelectedMethod(method.label)}
+            onClick={() => !method.disabled && setSelectedMethod(method.label)}
             key={method.id}
             className={`flex items-center select-none p-3 border rounded-lg ${
               method.disabled

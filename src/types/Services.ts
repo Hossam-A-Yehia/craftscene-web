@@ -19,4 +19,5 @@ export interface Service {
 
 export interface ServiceCardProps {
   service: Service;
+  userType: number;
 }

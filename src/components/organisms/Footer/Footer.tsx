@@ -6,7 +6,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-  FaTwitter,
+  FaXTwitter,
 } from "react-icons/fa6";
 import LOGO from "@/assets/images/logo-footer.svg";
 import { useRouter } from "next/navigation";
@@ -22,6 +22,13 @@ const Footer: React.FC = () => {
   const handleRFQLink = () => {
     if (userData) {
       router.push("/add-rfq");
+    } else {
+      toast.error("home.header.access_rfq_massage");
+    }
+  };
+  const handleAskQLink = () => {
+    if (userData) {
+      router.push("/add-ask");
     } else {
       toast.error("home.header.access_rfq_massage");
     }
@@ -50,10 +57,11 @@ const Footer: React.FC = () => {
             </li>
             <li data-testid="social-twitter">
               <Link
-                href="#"
+                target="_blank"
+                href="https://x.com/craft_scene?s=11"
                 className="bg-white flex items-center text-main rounded-full size-10 justify-center"
               >
-                <FaTwitter className="text-xl" />
+                <FaXTwitter className="text-xl" />
               </Link>
             </li>
             <li data-testid="social-linkedin">
@@ -114,7 +122,13 @@ const Footer: React.FC = () => {
               {t("home.footer.get_questions")}
             </button>
             <li className="hover:underline text-slate-300 mb-6">
-              {t("home.footer.ask_the_professionals")}
+              <button
+                data-testid="rfq-button"
+                onClick={handleAskQLink}
+                className="hover:underline text-slate-300 mb-6"
+              >
+                {t("home.footer.ask_the_professionals")}
+              </button>
             </li>
           </ul>
         </div>

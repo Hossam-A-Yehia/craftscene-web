@@ -63,7 +63,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      {({ errors, touched, values, setFieldValue }) => (
+      {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
         <Form className="space-y-6">
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-5"
@@ -89,6 +89,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 placeholder={t("add_branch.branch_name_placeholder")}
                 touched={touched.branchName}
                 errors={errors.branchName}
+                onBlur={() => setFieldTouched("branch_name", true)}
               />
               <FormField
                 dataTestid="phone-branch"
@@ -99,6 +100,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 placeholder={t("add_branch.phone_placeholder")}
                 touched={touched.phone}
                 errors={errors.phone}
+                onBlur={() => setFieldTouched("phone", true)}
               />
             </div>
             <div className="col-span-1 flex flex-col gap-3">
@@ -121,6 +123,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 placeholder={t("add_branch.email_placeholder")}
                 touched={touched.email}
                 errors={errors.email}
+                onBlur={() => setFieldTouched("email", true)}
               />
               <FormField
                 dataTestid="postCode-branch"
@@ -131,6 +134,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 placeholder={t("add_branch.post_code_placeholder")}
                 touched={touched.postCode}
                 errors={errors.postCode}
+                onBlur={() => setFieldTouched("postCode", true)}
               />
               <FormField
                 id="location"
@@ -148,7 +152,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 onClick={mapModal.onOpen}
                 touched={touched.lang}
                 errors={errors.lang}
-                required
+                onBlur={() => setFieldTouched("lang", true)}
               />
             </div>
           </div>

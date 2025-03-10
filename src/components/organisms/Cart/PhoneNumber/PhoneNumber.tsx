@@ -7,7 +7,7 @@ export default function PhoneNumber({
   phone,
   isLoading,
 }: {
-  phone: string;
+  phone: number;
   isLoading: boolean;
 }) {
   if (isLoading) {
@@ -26,7 +26,13 @@ export default function PhoneNumber({
         {t("order.checkout.phone_number")}
       </div>
       <div className="flex items-center justify-between bg-gray-100 p-2 rounded-md gap-3">
-        <Text className="text-gray-700 text-lg">{phone}</Text>
+        <Text className="text-gray-700 text-lg">
+          {phone ? (
+            phone
+          ) : (
+            <span className="text-sm">No phone number available</span>
+          )}
+        </Text>
       </div>
     </div>
   );

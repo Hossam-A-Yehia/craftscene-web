@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20'
+            // args '-u root:root'  // Falls root-Rechte erforderlich sind, kannst du diese Zeile aktivieren
+        }
+    }
 
     // Environment variables used during deployment
     environment {
@@ -13,7 +18,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Check out the code from SCM (configured in the Jenkins job)
+                echo "Checking out source code from SCM..."
                 checkout scm
             }
         }
@@ -49,12 +54,12 @@ pipeline {
                         echo "Transferring ${ARCHIVE_NAME} to ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}..."
                         scp -o IdentitiesOnly=yes ${ARCHIVE_NAME} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
 
-                        echo "Starting deployment on remote server..."
-                        ssh -o IdentitiesOnly=yes ${REMOTE_USER}@${REMOTE_HOST} <<'EOF'
+                        echo "Starting deployment on the remote server..."
+                        ssh -o IdentitiesOnly=yes ${REMOTE_USER}@${REMOTE_HOST} <<EOF
                             #!/bin/bash
                             set -e
                             cd ${REMOTE_PATH} || { echo "Failed to change directory to ${REMOTE_PATH}"; exit 1; }
-                            echo "Current directory: $(pwd)"
+                            echo "Current directory: \$(pwd)"
                             
                             if [ -d ".next" ]; then
                                 echo "Removing old build directory .next..."
@@ -72,7 +77,7 @@ pipeline {
                             
                             echo "Starting Next.js application with PM2..."
                             pm2 start npm --name "next-app" -- start
-                        EOF
+EOF
 
                         echo "Deleting local archive ${ARCHIVE_NAME}..."
                         rm ${ARCHIVE_NAME}

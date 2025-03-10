@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { Address } from "@/types/Address";
 import { useUser } from "@/context/UserContext";
+import { IoMdWarning } from "react-icons/io";
 
 type Product = {
   id: any;
@@ -28,6 +29,7 @@ type Payload = Record<string, Product[]>;
 export default function CheckoutTemplate({ userId }: { userId: string }) {
   const router = useRouter();
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
+  const [isPhoneError, setIsPhoneError] = useState<boolean | false>(false);
 
   const { data: products, isLoading: isCartLoading } = useFetchCart(userId);
   const { userData: user, isLoading: isUserLoading } = useUser();
@@ -69,6 +71,10 @@ export default function CheckoutTemplate({ userId }: { userId: string }) {
   const handleOrderSubmission = async () => {
     if (!selectedAddress) {
       toast.error(t("order.checkout.no_addresses_available"));
+      return;
+    }
+    if (!phoneNumber) {
+      setIsPhoneError(true);
       return;
     }
 
@@ -126,9 +132,20 @@ export default function CheckoutTemplate({ userId }: { userId: string }) {
               onAddressChange={setSelectedAddress}
             />
             <PhoneNumber
-              phone={String(phoneNumber)}
+              phone={Number(phoneNumber)}
               isLoading={isUserLoading}
             />
+            {isPhoneError && (
+              <div className="flex items-center text-red-500 rounded-md pt-2">
+                <IoMdWarning
+                  className="size-3 mr-2 rtl:ml-2"
+                  data-testid="warning-icon"
+                />
+                <span className="text-xs font-medium">
+                  {"Please add your phone to proceed with your order"}
+                </span>
+              </div>
+            )}
             <PaymentMethod />
           </div>
         </div>

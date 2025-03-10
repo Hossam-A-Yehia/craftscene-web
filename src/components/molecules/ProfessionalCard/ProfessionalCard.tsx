@@ -4,7 +4,7 @@ import Text from "@/components/atoms/Text/Text";
 import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
-import { AiFillHeart, AiOutlinePhone, AiOutlineMail } from "react-icons/ai";
+import { BiMailSend, BiPhone } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
 
 interface CardProps {
@@ -13,6 +13,8 @@ interface CardProps {
   name: string;
   location: string;
   id: string;
+  email: string;
+  phone: number;
 }
 
 const ProfessionalCard: React.FC<CardProps> = ({
@@ -21,6 +23,8 @@ const ProfessionalCard: React.FC<CardProps> = ({
   name,
   location,
   id,
+  email,
+  phone,
 }) => {
   return (
     <div className="relative w-full max-w-sm mx-auto bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 h-[350px]">
@@ -33,26 +37,30 @@ const ProfessionalCard: React.FC<CardProps> = ({
             className="rounded-t-xl"
           />
         </div>
-        <div className="absolute top-4 right-4 space-y-2 flex flex-col items-center">
-          <button
-            data-testid="heart-button"
-            className="bg-white p-2 rounded-full shadow-md text-red-500 hover:bg-gray-100"
-          >
-            <AiFillHeart size={20} />
-          </button>
-          <button
-            data-testid="phone-button"
-            className="bg-white p-2 rounded-full shadow-md text-blue-500 hover:bg-gray-100"
-          >
-            <AiOutlinePhone size={20} />
-          </button>
-          <button
-            data-testid="mail-button"
-            className="bg-white p-2 rounded-full shadow-md text-green-500 hover:bg-gray-100"
-          >
-            <AiOutlineMail size={20} />
-          </button>
-        </div>
+        <ul className="flex items-center absolute gap-3 flex-col right-5 top-1/2 -translate-y-1/2">
+          {email && (
+            <li className="">
+              <a
+                href={`mailto:?to=${email}`}
+                className="bg-white flex items-center text-main rounded-full size-9 justify-center"
+              >
+                <BiMailSend className="text-xl" />
+              </a>
+            </li>
+          )}
+          {phone && (
+            <li className="">
+              <a
+                href={`https://wa.me/${phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white flex items-center text-main rounded-full size-9 justify-center"
+              >
+                <BiPhone className="text-xl" />
+              </a>
+            </li>
+          )}
+        </ul>
       </div>
       <div className="p-4 text-center">
         <div className="relative w-20 h-20 mx-auto -mt-[55px] rounded-full border-2 border-main overflow-hidden">

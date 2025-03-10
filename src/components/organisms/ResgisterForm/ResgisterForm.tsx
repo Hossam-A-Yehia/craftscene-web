@@ -69,7 +69,7 @@ const ResgisterForm: React.FC = () => {
     <div className="w-full max-w-[36rem] p-8 space-y-6">
       <div>
         <h2 className="form-heading">{t("auth.register.title")}</h2>
-        <p className="form-description">{t("auth.login.desc")}</p>
+        <p className="form-description">{t("auth.register.desc")}</p>
       </div>
       <Formik
         initialValues={initialValues}

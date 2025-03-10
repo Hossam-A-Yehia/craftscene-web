@@ -8,22 +8,19 @@ type TabProps = {
 };
 
 const Tabs: React.FC<TabProps> = ({ tabs, activeTab, onTabClick }) => (
-  <div className="flex border-b">
-    {tabs.map((tab, index) => (
+  <div className="flex border-b gap-3">
+    {tabs.map((tab) => (
       <div key={tab} className="flex items-center">
         <button
-          className={`pb-2 duration-300 hover:border-main hover:text-main ${
+          className={`px-4 py-2 rounded-t-lg duration-300 ${
             tab === activeTab
-              ? "border-b-2 border-main text-main font-bold"
-              : "text-gray-500"
+              ? "bg-orange-500 text-white"
+              : "bg-gray-200 text-gray-700"
           }`}
           onClick={() => onTabClick(tab)}
         >
           {tab}
         </button>
-        {index < tabs.length - 1 && (
-          <span className="text-gray-500 mx-2 pb-4">_</span>
-        )}
       </div>
     ))}
   </div>

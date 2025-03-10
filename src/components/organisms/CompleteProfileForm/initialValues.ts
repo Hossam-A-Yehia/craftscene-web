@@ -20,9 +20,9 @@ export const initialValues: CompleteProfile = {
   // history
   classifications: [],
   price_range: 1,
-  volume_of_work: 0,
+  volume_of_work: 1,
   number_of_employees: "",
-  years_of_experience: 0,
+  years_of_experience: 1,
   accomplished_projects_count: 0,
   // resume
   business_desc_en: "",

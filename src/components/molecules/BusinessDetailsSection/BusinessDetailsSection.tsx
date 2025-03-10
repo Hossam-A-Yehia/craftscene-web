@@ -58,6 +58,8 @@ export function BusinessDetailsSection({
     contractorClassificationsOptions,
     supplierClassificationsOptions,
     isContractor,
+    isCraftsmen,
+    isFreelance,
   } = useBusinessForm();
   const mapModal = useDisclosure();
 
@@ -85,6 +87,7 @@ export function BusinessDetailsSection({
           value={values.business_name}
           placeholder={t("update_business_info.business_name_placeholder")}
           onBlur={() => setFieldTouched("business_name", true)}
+          required
         />
         <FormField
           id="business_email"
@@ -95,7 +98,9 @@ export function BusinessDetailsSection({
           touched={touched.business_email}
           errors={errors.business_email}
           onBlur={() => setFieldTouched("business_email", true)}
+          required
         />
+
         <FormField
           id="phone"
           label={t("update_business_info.phone")}
@@ -115,6 +120,7 @@ export function BusinessDetailsSection({
           value={values.business_des}
           placeholder={t("update_business_info.business_des_placeholder")}
           onBlur={() => setFieldTouched("business_des", true)}
+          required
         />
         <SelectInput
           id="country_id"
@@ -124,6 +130,7 @@ export function BusinessDetailsSection({
           error={errors.country_id}
           touched={touched.country_id}
           dataTestid="country_id"
+          required
         />
 
         <SelectInput
@@ -134,6 +141,7 @@ export function BusinessDetailsSection({
           error={errors.city_id}
           touched={touched.city_id}
           dataTestid="city_id"
+          required
         />
         <FormField
           id="hotline"
@@ -166,20 +174,22 @@ export function BusinessDetailsSection({
           touched={touched.volume_of_work}
           error={errors.volume_of_work}
         />
-        <SelectInput
-          dataTestid="number_of_employees"
-          id="number_of_employees"
-          name="number_of_employees"
-          label={t(
-            "business_profile_form.business_history_form.number_of_employees"
-          )}
-          options={numberOfEmployeesOptions}
-          placeholder={t(
-            "business_profile_form.business_history_form.number_of_employees_placeholder"
-          )}
-          touched={touched.number_of_employees}
-          error={errors.number_of_employees}
-        />
+        {!isCraftsmen && !isFreelance && (
+          <SelectInput
+            dataTestid="number_of_employees"
+            id="number_of_employees"
+            name="number_of_employees"
+            label={t(
+              "business_profile_form.business_history_form.number_of_employees"
+            )}
+            options={numberOfEmployeesOptions}
+            placeholder={t(
+              "business_profile_form.business_history_form.number_of_employees_placeholder"
+            )}
+            touched={touched.number_of_employees}
+            error={errors.number_of_employees}
+          />
+        )}
         <SelectInput
           dataTestid="years_of_experience"
           id="years_of_experience"
@@ -230,6 +240,7 @@ export function BusinessDetailsSection({
           onClick={mapModal.onOpen}
           touched={touched.hotline}
           errors={errors.hotline}
+          required
         />
         <Modal isOpen={mapModal.isOpen} onClose={mapModal.onClose}>
           <ModalHeader dataTestid="map-modal-title">

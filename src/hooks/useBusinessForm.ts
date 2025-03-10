@@ -11,6 +11,8 @@ import {
   VOLUME_OF_WORK,
   NUMBER_OF_EMPLOYEES,
   YEARS_OF_EXPERIENCE,
+  SERVICE_PROVIDER_CRAFTSMEN,
+  SERVICE_PROVIDER_FREELANCE,
 } from "@/constants/constants";
 import { useOptions } from "@/hooks/useOptions";
 import { useUser } from "@/context/UserContext";
@@ -22,6 +24,8 @@ export function useBusinessForm() {
   const { countryOptions, cityOptions } = useCountryData();
   const user_type = userData?.user_type;
   const isSupplier = user_type === SUPPLIER;
+  const isCraftsmen = user_type === SERVICE_PROVIDER_CRAFTSMEN;
+  const isFreelance = user_type === SERVICE_PROVIDER_FREELANCE;
   const isContractor = user_type === SERVICE_PROVIDER_CONTRACTOR;
 
   const [initialValues, setInitialValues] = useState<FormValues>({
@@ -128,5 +132,7 @@ export function useBusinessForm() {
     userId: userData?.business_user_detail?.id,
     isContractor,
     isLoading,
+    isCraftsmen,
+    isFreelance,
   };
 }

@@ -58,7 +58,7 @@ export default function OverviewSection({
   const renderTabContent = () => {
     if (activeTab === TABS.SERVICE) {
       if (services.length === 0) return <NoDataSection />;
-      return <ServiceGrid services={services} />;
+      return <ServiceGrid services={services} userType={userType} />;
     }
     if (activeTab === TABS.PROJECTS) {
       if (projects.length === 0) return <NoDataSection />;

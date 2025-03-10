@@ -50,7 +50,7 @@
     },
     "register": {
       "title": "Sign Up",
-      "desc": "Welcome to Craftscene",
+      "desc": "Sign up to continue to CraftScene",
       "first_name": "First name",
       "first_name_is_required": "First name is required",
       "last_name_is_required": "Last name is required",
@@ -76,8 +76,8 @@
       "signin": "Already have an account ? ",
       "click_here": "Signin",
       "city_is_required": "City is required",
-      "first_name_min_length": "First name must be at least 2 characters long.",
-      "last_name_min_length": "Last name must be at least 2 characters long.",
+      "first_name_min_length": "First name must be at least 3 characters long.",
+      "last_name_min_length": "Last name must be at least 3 characters long.",
       "email_or_phone_required": "Please Enter Your Email or Phone Number begin with (+)",
       "passwords_must_match": "Passwords must match",
       "password_requirements": "The password must be at least 6 characters long and include an uppercase letter, a lowercase letter, a number, and a special character"
@@ -781,6 +781,7 @@
     "select_your_categories_placeholder": "Select your categories",
     "services": "Services",
     "product_group": "Product groups",
+    "add_product_groups": "Add product groups",
     "add_servies": "Add Services",
     "select_your_services_placeholder": "Select your services",
     "select_your_product_group_placeholder": "Select your product groups",

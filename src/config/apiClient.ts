@@ -42,7 +42,7 @@ apiClient.interceptors.response.use(
         );
       }
       if (status === EXCEPTIONS.UNPROCESSABLE) {
-        throw new ExceptionClass("The inserted code is invalid");
+        throw new ExceptionClass("The verification code is invalid");
       }
       if (ExceptionClass) {
         throw new ExceptionClass(data?.message || "An error occurred", status);

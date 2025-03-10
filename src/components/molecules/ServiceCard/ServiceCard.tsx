@@ -3,11 +3,19 @@ import CustomImage from "@/components/atoms/Image/CustomImage";
 import Text from "@/components/atoms/Text/Text";
 import { useLanguage } from "@/hooks/useLanguage";
 import { ServiceCardProps } from "@/types/Services";
+import Link from "next/link";
+import { SUPPLIER } from "@/constants/constants";
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, userType }) => {
   const lang = useLanguage();
+
   return (
-    <div
+    <Link
+      href={
+        userType === SUPPLIER
+          ? `/services/${service?.service?.id}/products`
+          : `/ideas/${service?.service?.id}`
+      }
       key={service.id}
       className="bg-white text-start h-[300px] w-full relative"
     >
@@ -22,7 +30,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
           {service.service[`name_${lang}`] || service.service.name_en}
         </Text>
       </div>
-    </div>
+    </Link>
   );
 };
 

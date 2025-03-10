@@ -39,7 +39,7 @@ export default function BusinessInfo({
     isPendingAddLike,
     isPendingRemoveLike,
     handleLike,
-  } = useLike(businessInfo?.user?.id, "BusinessUserDetail");
+  } = useLike(businessInfo?.id, "BusinessUserDetail");
 
   return (
     <div className="w-full mt-5 ">
