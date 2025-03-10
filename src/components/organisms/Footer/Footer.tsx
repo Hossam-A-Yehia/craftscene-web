@@ -23,14 +23,14 @@ const Footer: React.FC = () => {
     if (userData) {
       router.push("/add-rfq");
     } else {
-      toast.error("home.header.access_rfq_massage");
+      toast.error(t("home.header.access_rfq_massage"));
     }
   };
   const handleAskQLink = () => {
     if (userData) {
       router.push("/add-ask");
     } else {
-      toast.error("home.header.access_rfq_massage");
+      toast.error(t("home.header.access_rfq_massage"));
     }
   };
 

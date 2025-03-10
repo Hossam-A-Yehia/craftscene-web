@@ -535,7 +535,6 @@
       "title": "Order details",
       "product": "Product",
       "products": "Products",
-      "product": "product",
       "order_Summary": "Order Summary",
       "shipping_address": "Shipping address",
       "delivery_date": "delivery Date",
@@ -559,8 +558,7 @@
       "shippling_placeholder": "Enter shipping",
       "delivery_date_placeholder": "Choose Delivery date",
       "delivery_date_required": "Delivery date is required",
-      "shippling_required": "Shipping is required",
-      "not_selected": "Not Selected"
+      "shippling_required": "Shipping is required"
     }
   },
   "rfq": {
