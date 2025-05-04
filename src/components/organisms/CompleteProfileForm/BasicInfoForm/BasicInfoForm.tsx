@@ -244,8 +244,8 @@ const BasicInfoForm = ({
                   : t("business_profile_form.basic_form.location")
               }
               onClick={mapModal.onOpen}
-              touched={touched.hotline}
-              errors={errors.hotline}
+              touched={touched.lat}
+              errors={errors.lat}
               required
             />
           </div>

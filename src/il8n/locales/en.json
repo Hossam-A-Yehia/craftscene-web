@@ -403,7 +403,7 @@
     "email_placeholder": "Enter your email",
     "phone_placeholder": "Enter your phone",
     "branch_name_placeholder": "Enter your branch name",
-    "post_code": "Post code",
+    "post_code": "Postal Code",
     "post_code_placeholder": "Enter your Post code",
     "add_branch_btn": "Add branch",
     "validation": {
@@ -753,8 +753,10 @@
     "business_email_placeholder": "Please enter your business email",
     "phone": "Business Phone",
     "phone_placeholder": "Please enter your business phone",
-    "business_des": "Description",
-    "business_des_placeholder": "Please enter the description",
+    "business_des_ar": "Description (AR)",
+    "business_des_placeholder_ar": "Please enter the description (AR)",
+    "business_des_en": "Description (EN)",
+    "business_des_placeholder_en": "Please enter the description (EN)",
     "country": "Country",
     "city": "City",
     "hotline": "Hotline"

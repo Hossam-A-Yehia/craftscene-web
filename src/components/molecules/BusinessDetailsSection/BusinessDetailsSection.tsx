@@ -24,7 +24,8 @@ interface BusinessDetailsProps {
     hotline: string;
     country_id: string | number;
     city_id: string | number;
-    business_des: string;
+    business_des_en: string;
+    business_des_ar: string;
     lat?: number;
     lang?: number;
     logo: string;
@@ -100,7 +101,6 @@ export function BusinessDetailsSection({
           onBlur={() => setFieldTouched("business_email", true)}
           required
         />
-
         <FormField
           id="phone"
           label={t("update_business_info.phone")}
@@ -112,15 +112,25 @@ export function BusinessDetailsSection({
           onBlur={() => setFieldTouched("phone", true)}
         />
         <FormField
-          id="business_des"
-          label={t("update_business_info.business_des")}
-          name="business_des"
-          touched={touched.business_des}
-          errors={errors.business_des}
-          value={values.business_des}
-          placeholder={t("update_business_info.business_des_placeholder")}
-          onBlur={() => setFieldTouched("business_des", true)}
+          id="business_des_en"
+          label={t("update_business_info.business_des_en")}
+          name="business_des_en"
+          touched={touched.business_des_en}
+          errors={errors.business_des_en}
+          value={values.business_des_en}
+          placeholder={t("update_business_info.business_des_placeholder_en")}
+          onBlur={() => setFieldTouched("business_des_en", true)}
           required
+        />
+        <FormField
+          id="business_des_ar"
+          label={t("update_business_info.business_des_ar")}
+          name="business_des_ar"
+          touched={touched.business_des_ar}
+          errors={errors.business_des_ar}
+          value={values.business_des_ar}
+          placeholder={t("update_business_info.business_des_placeholder_ar")}
+          onBlur={() => setFieldTouched("business_des_ar", true)}
         />
         <SelectInput
           id="country_id"

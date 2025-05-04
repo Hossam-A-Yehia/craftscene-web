@@ -34,7 +34,7 @@ const ShareModalContent = ({
   shareTitle,
   url,
 }: ModalContentProps) => {
-  const shareUrl = `https://craftscene-website.vercel.app${url}`;
+  const shareUrl = `https://craftscene-web.vercel.app/${url}`;
   const title = t("share.title") + shareTitle;
   const [copied, setCopied] = useState(false);
 

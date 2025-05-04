@@ -79,6 +79,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 error={errors.country}
                 touched={touched.country}
                 dataTestid="country-branch"
+                required
               />
               <FormField
                 dataTestid="branch_name"
@@ -90,6 +91,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 touched={touched.branchName}
                 errors={errors.branchName}
                 onBlur={() => setFieldTouched("branch_name", true)}
+                required
               />
               <FormField
                 dataTestid="phone-branch"
@@ -101,40 +103,7 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 touched={touched.phone}
                 errors={errors.phone}
                 onBlur={() => setFieldTouched("phone", true)}
-              />
-            </div>
-            <div className="col-span-1 flex flex-col gap-3">
-              <SelectInput
-                id="city"
-                name="city"
-                label={t("add_branch.city")}
-                options={cityOptions(values.country)}
-                placeholder={t("add_branch.city_placeholder")}
-                error={errors.city}
-                touched={touched.city}
-                dataTestid="city-branch"
-              />
-              <FormField
-                dataTestid="email-branch"
-                id="email"
-                label={t("add_branch.email")}
-                type="email"
-                name="email"
-                placeholder={t("add_branch.email_placeholder")}
-                touched={touched.email}
-                errors={errors.email}
-                onBlur={() => setFieldTouched("email", true)}
-              />
-              <FormField
-                dataTestid="postCode-branch"
-                id="postCode"
-                label={t("add_branch.post_code")}
-                type="text"
-                name="postCode"
-                placeholder={t("add_branch.post_code_placeholder")}
-                touched={touched.postCode}
-                errors={errors.postCode}
-                onBlur={() => setFieldTouched("postCode", true)}
+                required
               />
               <FormField
                 id="location"
@@ -153,6 +122,42 @@ const AddBranchForm: React.FC<AddBranchFormProps> = ({ userId }) => {
                 touched={touched.lang}
                 errors={errors.lang}
                 onBlur={() => setFieldTouched("lang", true)}
+              />
+            </div>
+            <div className="col-span-1 flex flex-col gap-3">
+              <SelectInput
+                id="city"
+                name="city"
+                label={t("add_branch.city")}
+                options={cityOptions(values.country)}
+                placeholder={t("add_branch.city_placeholder")}
+                error={errors.city}
+                touched={touched.city}
+                dataTestid="city-branch"
+                required
+              />
+              <FormField
+                dataTestid="email-branch"
+                id="email"
+                label={t("add_branch.email")}
+                type="email"
+                name="email"
+                placeholder={t("add_branch.email_placeholder")}
+                touched={touched.email}
+                errors={errors.email}
+                onBlur={() => setFieldTouched("email", true)}
+                required
+              />
+              <FormField
+                dataTestid="postCode-branch"
+                id="postCode"
+                label={t("add_branch.post_code")}
+                type="text"
+                name="postCode"
+                placeholder={t("add_branch.post_code_placeholder")}
+                touched={touched.postCode}
+                errors={errors.postCode}
+                onBlur={() => setFieldTouched("postCode", true)}
               />
             </div>
           </div>

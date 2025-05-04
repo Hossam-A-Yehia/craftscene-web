@@ -1,9 +1,13 @@
 import apiClient from "@/config/apiClient";
 import packagesEndpoints from "@/config/endpoints/packagesEndpoints";
-import { PackageType } from "@/types/Packages";
 
-export const getPackages = () => {
-  return apiClient.get<null, { data: { payload: { data: PackageType[] } } }>(
+export const getPackages = async () => {
+  const response = await  apiClient.get(
     `${packagesEndpoints.packages}`
   );
+  return response.data.payload.data;
+};
+export const choosePackages = async (data: { package_id: number }) => {
+  const response = await apiClient.post(`${packagesEndpoints.subscribe}`, data);
+  return response.data;
 };

@@ -21,5 +21,12 @@ export const validationSchema = Yup.object().shape({
   volume_of_work: Yup.number().min(0).optional(),
   number_of_employees: Yup.number().min(0).optional(),
   years_of_experience: Yup.number().min(0).optional(),
-  business_des: Yup.string(),
+  business_des_en: Yup.string()
+    .trim()
+    .min(10, "Business description must be at least 10 characters long")
+    .required("Business description is required"),
+    business_des_ar: Yup.string()
+    .trim()
+    .min(10, "Business description must be at least 10 characters long")
+    .optional(),
 });

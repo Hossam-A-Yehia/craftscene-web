@@ -5,7 +5,8 @@ import PackagesGroupRadio from "@/components/molecules/PackagesGroupRadio/Packag
 import { useBusinessProfileFlow } from "@/hooks/useCompleteProfile";
 import { CompleteProfile } from "@/types/CompleteProfile";
 import { User } from "@/types/User";
-import { staticPackages } from "./utilty";
+import { useFetchPackages } from "@/hooks/usePackages";
+import Loader from "@/components/atoms/Loader/Loader";
 
 const PackagesForm = ({
   profile,
@@ -28,15 +29,42 @@ const PackagesForm = ({
     user_id: profile.id,
   });
 
+  const { data: packages, isLoading: isLoadingPackages } = useFetchPackages();
+
   const handleSubmit = () => {
     mutateBusinessProfile();
   };
 
+  const transformedPackages = React.useMemo(() => {
+    if (!packages || !Array.isArray(packages)) return [];
+    
+    return packages.map(pkg => ({
+      value: pkg.id,
+      label: pkg.name_en,
+      price: pkg.price,
+      description: pkg.desc_en,
+      features: [
+        { text: `${pkg.no_ideas === -1 ? "Unlimited" : pkg.no_ideas} Ideas`, enabled: true },
+        { text: `${pkg.no_invitation === -1 ? "Unlimited" : pkg.no_invitation} Invitations`, enabled: true },
+        { text: `${pkg.no_cvs === -1 ? "Unlimited" : pkg.no_cvs} CVs`, enabled: true },
+        { text: `${pkg.no_media === -1 ? "Unlimited" : pkg.no_media} Media Uploads`, enabled: pkg.no_media > 0 },
+        { text: `${pkg.no_calls === -1 ? "Unlimited" : pkg.no_calls} Calls`, enabled: true },
+        { text: `${pkg.no_rfp === -1 ? "Unlimited" : pkg.no_rfp} RFPs`, enabled: true },
+        { text: `${pkg.duration} Month${pkg.duration !== 1 ? 's' : ''} Duration`, enabled: pkg.duration > 0 },
+      ],
+    }));
+  }, [packages]);
+
   useEffect(() => {
-    if (staticPackages.length > 0) {
-      setFieldValue("package_id", staticPackages[0].value);
+    if (transformedPackages.length > 0) {
+      const freePackage = transformedPackages.find(pkg => pkg.price === 0);
+      setFieldValue("package_id", freePackage ? freePackage.value : transformedPackages[0].value);
     }
-  }, [setFieldValue]);
+  }, [transformedPackages, setFieldValue]);
+
+  if (isLoadingPackages) {
+    return <Loader/>;
+  }
 
   return (
     <Form
@@ -50,7 +78,7 @@ const PackagesForm = ({
     >
       <div className="px-32 max-lg:px-4 mb-8">
         <PackagesGroupRadio
-          options={staticPackages}
+          options={transformedPackages}
           required
           name="package_id"
         />

@@ -1,5 +1,5 @@
-import { getPackages } from "@/services/Packages";
-import { useQuery } from "@tanstack/react-query";
+import { choosePackages, getPackages } from "@/services/Packages";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export function useFetchPackages() {
   return useQuery({
@@ -8,3 +8,10 @@ export function useFetchPackages() {
     staleTime: Infinity,
   });
 }
+
+
+export const useMutateChoosePackages = () => {
+  return useMutation({
+    mutationFn: choosePackages,
+  });
+};

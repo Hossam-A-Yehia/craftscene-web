@@ -17,6 +17,7 @@ export const validationSchema = Yup.object()
       .required(t("edit_user.validation.last_name_is_required")),
     email: Yup.string()
       .email(t("auth.register.invalid_email"))
+      .matches(/^[\w.-]+@[\w.-]+\.\w+$/, "Invalid email format")
       .when("user_type", {
         is: (user_type: string) =>
           user_type !== String(CLIENT) &&

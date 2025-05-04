@@ -105,3 +105,6 @@ export const discussion: Metadata = {
 export const verification: Metadata = {
   title: "Verification  | CraftScene",
 };
+export const successPayment: Metadata = {
+  title: "Success payment  | CraftScene",
+};

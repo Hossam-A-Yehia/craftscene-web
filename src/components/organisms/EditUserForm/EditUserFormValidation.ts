@@ -15,6 +15,7 @@ export const validationSchema = Yup.object().shape({
     .required(t("edit_user.validation.last_name_is_required")),
   email: Yup.string()
     .email(t("edit_user.validation.invalid_email"))
+    .matches(/^[\w.-]+@[\w.-]+\.\w+$/, "Invalid email format")
     .required(t("edit_user.validation.email_required")),
   phone: Yup.string()
     .matches(

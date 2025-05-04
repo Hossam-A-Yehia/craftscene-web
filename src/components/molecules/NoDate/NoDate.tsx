@@ -1,16 +1,13 @@
+import CustomImage from "@/components/atoms/Image/CustomImage";
 import React from "react";
-import { FaExclamationCircle } from "react-icons/fa";
 
-const NoData = () => {
+const NoData = ({width = 200,height = 500}:{width?:number, height?:number}) => {
   return (
     <div
       className="flex flex-col items-center justify-center p-4 w-full"
       data-testid="no-data-container"
     >
-      <FaExclamationCircle
-        className="text-gray-400 text-4xl mb-4 animate-bounce"
-        data-testid="no-data-icon"
-      />
+      <CustomImage src="/empty-state.png" width={width} height={height} alt={"EmptyState"} className="mb-4" />
       <h2 className="text-2xl text-gray-700 font-bold mb-2 text-center">
         No Data Available
       </h2>

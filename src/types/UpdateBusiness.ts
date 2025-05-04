@@ -1,6 +1,7 @@
 export interface FormValues {
   business_name: string;
-  business_des: string;
+  business_des_ar: string;
+  business_des_en: string;
   business_email: string;
   phone: string;
   country_id: string;
