@@ -56,7 +56,7 @@ const PackagesTemplate: React.FC<PackagesTemplateProps> = () => {
                     toast.success("Subscription successful!");
                     const paymentLink = res?.payload?.payment_link;
                     if (paymentLink) {
-                      window.open(paymentLink);
+                      window.location.replace(paymentLink);
                       Cookies.remove("signUpToken");
                     } else {
                       toast.error("Payment link not found.");
