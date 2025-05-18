@@ -48,9 +48,7 @@ export interface CompleteProfile {
   business_desc_en: string;
   business_desc_ar: string;
   files: { file: File; type: number | null }[];
-
-  // step 5 packages
-  package_id: number;
+  setIsModalOpen?:any
 }
 
 export interface BusinessUserDetailsStore {

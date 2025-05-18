@@ -9,7 +9,6 @@ const loggedInRoutes = [
   "/address",
   "/add-branches",
   "/branches",
-  "/interests",
 ];
 const loggedOutRoutes = [
   "/login",
@@ -30,7 +29,7 @@ export default async function AuthMiddleware(
     return NextResponse.next();
   }
   const myCookies = await cookies();
-  const token = myCookies.get("authToken")?.value || null;
+  const token = myCookies.get("WAuthToken")?.value || null;
   if (!token && loggedInRoutes.some((path) => pathname.startsWith(path))) {
     return NextResponse.redirect(new URL("/login", req.url));
   }

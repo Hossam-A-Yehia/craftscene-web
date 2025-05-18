@@ -15,6 +15,7 @@ import Text from "@/components/atoms/Text/Text";
 import VerifyModal from "../Modals/VerifyModal/VerifyModal";
 import { toast } from "react-toastify";
 import { CLIENT } from "@/constants/constants";
+import { useUser } from "@/context/UserContext";
 
 const VerificationForm: React.FC = () => {
   const { mutate, isPending, error } = useVerificationEmail();
@@ -25,8 +26,10 @@ const VerificationForm: React.FC = () => {
     email?: string;
     phone?: string;
     user_type?: string;
+    id?: string;
   }>({});
   const { email, phone, user_type } = userData;
+const {userData:user} = useUser()
 
   const { mutateAsync, isPending: isResendPending } = useResendCode();
 
@@ -53,7 +56,7 @@ const VerificationForm: React.FC = () => {
       const timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
       return () => clearTimeout(timer);
     }
-  }, [timeLeft]);
+  }, []);
 
   const onSubmit = async (
     values: VerificationRequest,
@@ -67,10 +70,9 @@ const VerificationForm: React.FC = () => {
       onSuccess: () => {
         actions.setSubmitting(false);
         setSuccessMessage(t("auth.varify.success_message"));
-        localStorage.removeItem("userData-craft");
         setTimeout(() => {
           router.push(
-            Number(user_type) !== CLIENT ? "/complete-profile" : "/login"
+            Number(user_type) !== CLIENT ? "/complete-profile" : `/profile-interests/${user?.id}?type=client`
           );
         }, 2000);
       },

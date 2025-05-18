@@ -17,7 +17,6 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import { t } from "i18next";
-import { useMutateChoosePackages } from "./usePackages";
 
 function generateBusinessUserDetailsFormData(profile: CompleteProfile) {
   const businessUserDetails = new FormData();
@@ -128,58 +127,31 @@ export const useBusinessProfileFlow = (values: CompleteProfile) => {
     mutationFn: storeSuggestedServices,
   });
 
-  const {
-    mutate: mutateChoosePackagess,
-    isPending: isChoosePackagessLoading,
-  } = useMutateChoosePackages();
-
   const { mutate: mutateDetails, isPending: isDetailsLoading } = useMutation({
     mutationFn: () => {
       return storeBusinessUserDetails(businessUserDetails);
     },
     onSuccess: () => {
-      let successCount = 0;
-      const requiredSuccesses = values.suggestService ? 5 : 4;
 
-      const checkCompletion = (res?: any) => {
-        const paymwntLink = res?.payload?.payment_link
-        successCount += 1;
-        if (successCount === requiredSuccesses || paymwntLink) {
-          window.location.href = paymwntLink;
-          Cookies.remove("signUpToken");
-          Cookies.remove("authToken");
-        }
+      const checkCompletion = () => {
+        values.setIsModalOpen(true);
+        Cookies.remove("WAuthToken");
       };
 
       toast.info(t("business_profile_form.success_message"));
 
-      // Mutate Categories
       mutateCategories(businessUserCategories, { onSuccess: checkCompletion });
 
-      // Mutate Services
       mutateServices(
         { services: businessUserServices },
         { onSuccess: checkCompletion }
       );
 
-      // Mutate Suggested Services (if applicable)
       if (suggestedService) {
-        mutateSuggestedServices(suggestedService, { onSuccess: checkCompletion });
+        mutateSuggestedServices(suggestedService, {
+          onSuccess: checkCompletion,
+        });
       }
-
-      // Mutate Package Selection
-      mutateChoosePackagess(
-        { package_id: values.package_id },
-        {
-          onSuccess: (response) => {
-            console.log("Success:", response);
-            checkCompletion(response);
-          },
-          onError: (error) => {
-            console.error("Error selecting package:", error);
-          },
-        }
-      );
     },
   });
 
@@ -187,11 +159,14 @@ export const useBusinessProfileFlow = (values: CompleteProfile) => {
     isDetailsLoading ||
     isCategoriesLoading ||
     isServicesLoading ||
-    isSuggestedServicesLoading ||
-    isChoosePackagessLoading;
+    isSuggestedServicesLoading;
 
   return {
     mutateBusinessProfile: mutateDetails,
     isLoading,
   };
+};
+
+export const toogless = (toggleInterestModal: any) => {
+  toggleInterestModal();
 };

@@ -4,7 +4,7 @@ import CompleteProfileEnum from "@/constants/enums/completeProfileEnum";
 import { t } from "i18next";
 import React, { useState } from "react";
 
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 4;
 const CompleteProfileLayout = () => {
   const [currentForm, setCurrentForm] = useState<number>(
     CompleteProfileEnum.BUSINESS_INFO

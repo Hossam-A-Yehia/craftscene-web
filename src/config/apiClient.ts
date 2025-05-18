@@ -58,7 +58,7 @@ apiClient.interceptors.request.use(
       typeof window !== "undefined"
         ? localStorage.getItem("appLanguage") || "en"
         : "en";
-    const token = Cookies.get("authToken") || Cookies.get("signUpToken");
+    const token = Cookies.get("WAuthToken") || Cookies.get("signUpToken");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

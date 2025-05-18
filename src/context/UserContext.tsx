@@ -60,7 +60,7 @@ interface UserProviderProps {
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const token = Cookies.get("authToken") || Cookies.get("signUpToken");
+  const token = Cookies.get("WAuthToken") || Cookies.get("signUpToken");
 
   const {
     data: userData,

@@ -82,7 +82,7 @@ export default function ProductsInfo({
   }, []);
 
   useEffect(() => {
-    setToken(Cookies.get("authToken") || "");
+    setToken(Cookies.get("WAuthToken") || "");
   }, []);
 
   return (

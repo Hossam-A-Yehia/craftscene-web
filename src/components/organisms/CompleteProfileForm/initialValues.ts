@@ -29,5 +29,4 @@ export const initialValues: CompleteProfile = {
   business_desc_ar: "",
   files: [],
   // packages
-  package_id: 1,
 };

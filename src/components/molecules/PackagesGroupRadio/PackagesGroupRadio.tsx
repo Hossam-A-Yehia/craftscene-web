@@ -1,6 +1,6 @@
 import React from "react";
 import { Field, FieldProps } from "formik";
-import { FaCircleCheck, FaXmark, FaCheck } from "react-icons/fa6";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 interface Feature {
   text: string;
@@ -34,16 +34,19 @@ const PackagesGroupRadio: React.FC<RadioGroupProps> = ({
 }) => (
   <Field name={name}>
     {({ field, form }: FieldProps) => (
-      <div className="flex flex-col gap-4">
+      <div className="space-y-6">
         {label && (
-          <label className="text-lg font-semibold text-gray-900">
+          <label className="block text-xl font-medium text-gray-800">
             {label}
-            {required && <span className="text-red-500">*</span>}
+            {required && <span className="text-rose-500 ml-1">*</span>}
           </label>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {options.map((option) => (
-            <div key={option.value} className="flex flex-col">
+            <div
+              key={option.value}
+              className="relative group"
+            >
               <input
                 type="radio"
                 id={String(option.value)}
@@ -57,48 +60,52 @@ const PackagesGroupRadio: React.FC<RadioGroupProps> = ({
               />
               <label
                 htmlFor={String(option.value)}
-                className="h-full flex flex-col border border-gray-200 rounded-xl transition-all duration-200 peer-checked:border-blue-500 peer-checked:bg-blue-50 hover:border-blue-300 cursor-pointer"
+                className={`
+                  block h-full rounded-2xl border-2 p-6 bg-white
+                  transition-all duration-300 cursor-pointer
+                  peer-checked:border-indigo-500 peer-checked:shadow-lg
+                  hover:shadow-md hover:border-indigo-300
+                  group-hover:scale-[1.02] group-hover:shadow-md
+                `}
               >
-                <div className="p-6 flex flex-col gap-4">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-xl font-bold text-gray-900">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-2xl font-semibold text-gray-900">
                       {option.label}
                     </h3>
-                    <FaCircleCheck
-                      className={`w-6 h-6 text-blue-500 transition-opacity duration-200 ${
-                        field.value === option.value
-                          ? "opacity-100"
-                          : "opacity-0"
-                      }`}
+                    <FaCheckCircle
+                      className={`
+                        w-7 h-7 text-indigo-500 transition-all duration-300
+                        ${field.value === option.value ? "opacity-100 scale-100" : "opacity-0 scale-75"}
+                      `}
                     />
                   </div>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-2xl font-bold text-gray-900">
+                  <div className="flex items-end gap-2">
+                    <span className="text-3xl font-bold text-gray-900">
                       ${option.price.toFixed(2)}
                     </span>
-                    <span className="text-gray-600 text-sm">
-                      /month after trial ends
+                    <span className="text-gray-500 text-base mb-1">
+                      /month
                     </span>
                   </div>
                   {option.description && (
-                    <p className="text-sm text-gray-600">
+                    <p className="text-gray-600 text-sm leading-relaxed">
                       {option.description}
                     </p>
                   )}
-                </div>
-                <div className="border-t border-gray-200 p-6">
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 pt-4 border-t border-gray-100">
                     {option.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2">
+                      <li key={index} className="flex items-center gap-3">
                         {feature.enabled ? (
-                          <FaCheck className="w-5 h-5 text-green-500 mt-0.5" />
+                          <FaCheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
                         ) : (
-                          <FaXmark className="w-5 h-5 text-gray-400 mt-0.5" />
+                          <FaTimesCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
                         )}
                         <span
-                          className={`text-sm ${
-                            feature.enabled ? "text-gray-900" : "text-gray-500"
-                          }`}
+                          className={`
+                            text-sm leading-tight
+                            ${feature.enabled ? "text-gray-800" : "text-gray-400"}
+                          `}
                         >
                           {feature.text}
                         </span>
@@ -111,7 +118,7 @@ const PackagesGroupRadio: React.FC<RadioGroupProps> = ({
           ))}
         </div>
         {error && touched && (
-          <p className="text-sm text-red-500 mt-2">{error}</p>
+          <p className="text-rose-500 text-sm font-medium">{error}</p>
         )}
       </div>
     )}

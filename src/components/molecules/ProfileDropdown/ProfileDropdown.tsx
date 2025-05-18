@@ -45,7 +45,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const handleLogout = () => {
-    Cookies.remove("authToken");
+    Cookies.remove("WAuthToken");
     window.location.replace("/login");
   };
 

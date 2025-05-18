@@ -3,7 +3,6 @@ const enum CompleteProfileEnum {
   SERVICES,
   BUSINESS_HISTORY,
   RESUME,
-  PACKAGES,
 }
 
 export default CompleteProfileEnum;

@@ -1,23 +1,36 @@
 "use client";
 import Button from "@/components/atoms/Button/Button";
 import Text from "@/components/atoms/Text/Text";
+import { CLIENT } from "@/constants/constants";
+import { useUser } from "@/context/UserContext";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useMutateEditInterests } from "@/hooks/useUser";
 import { Category, InterestsPageProps } from "@/types/Interests";
 import { t } from "i18next";
-import React, { JSX, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { JSX, useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const InterestsPage: React.FC<InterestsPageProps> = ({
   categories,
   userInterests,
   userId,
 }) => {
+  const router = useRouter();
+  const { userData } = useUser();
   const lang = useLanguage();
   const { mutateAsync, isPending } = useMutateEditInterests();
+  const [urlKey, setUrlKey] = useState("");
 
+  useEffect(() => {
+    // This runs only on the client
+    const href = window.location.href;
+    const key = href.split("/")[3];
+    setUrlKey(key);
+  }, []);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(
     categories[0]?.id || null
   );
@@ -76,6 +89,16 @@ const InterestsPage: React.FC<InterestsPageProps> = ({
     mutateAsync(formattedServices)
       .then(() => {
         toast.info(t("user_interests.success_message"));
+        if (urlKey === "profile-interests") {
+          if (userData?.user_type === CLIENT) {
+            Cookies.remove("signUpToken");
+            localStorage.removeItem("userData-craft");
+            window.location.replace("/login");
+          } else {
+            router.push(`/packages/${userId}`);
+            localStorage.removeItem("userData-craft");
+          }
+        }
       })
       .catch((err) => {
         toast.error(err.response.data.message);

@@ -11,14 +11,12 @@ import { initialValues } from "./initialValues";
 import BasicInfoForm from "./BasicInfoForm/BasicInfoForm";
 import BusinessHistoryForm from "./BusinessHistoryForm/BusinessHistoryForm";
 import BusinessResumeForm from "./BusinessResume/BusinessResumeForm";
-import PackagesForm from "./PackagesForm/PackagesForm";
 import ServicesForm from "./ServicesForm/ServicesForm";
 
 // Schemas
 import { BasicInfoValidationSchema } from "./BasicInfoForm/BasicInfovalidation";
 import { BusinessHistoryValidation } from "./BusinessHistoryForm/BusinessHistoryvalidation";
 import { BusinessResumeValidation } from "./BusinessResume/BusinessResumevalidation";
-import { PackagesValidation } from "./PackagesForm/Packagesvalidation";
 import { ServicesValidationSchema } from "./ServicesForm/Servicesvalidation";
 
 interface GroupFormProps {
@@ -38,7 +36,6 @@ const GroupForm: React.FC<GroupFormProps> = ({
       [CompleteProfileEnum.SERVICES]: ServicesValidationSchema,
       [CompleteProfileEnum.BUSINESS_HISTORY]: BusinessHistoryValidation,
       [CompleteProfileEnum.RESUME]: BusinessResumeValidation,
-      [CompleteProfileEnum.PACKAGES]: PackagesValidation,
     }),
     []
   );
@@ -49,7 +46,6 @@ const GroupForm: React.FC<GroupFormProps> = ({
       [CompleteProfileEnum.SERVICES]: ServicesForm,
       [CompleteProfileEnum.BUSINESS_HISTORY]: BusinessHistoryForm,
       [CompleteProfileEnum.RESUME]: BusinessResumeForm,
-      [CompleteProfileEnum.PACKAGES]: PackagesForm,
     }),
     []
   );

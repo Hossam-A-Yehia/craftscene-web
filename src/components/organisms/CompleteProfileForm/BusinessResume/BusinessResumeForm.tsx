@@ -2,19 +2,22 @@ import Button from "@/components/atoms/Button/Button";
 import SelectInput from "@/components/molecules/SelectInput/SelectInput";
 import TextAreaField from "@/components/molecules/TextAreaField/TextAreaField";
 import { file_types } from "@/constants/constants";
+import {  useBusinessProfileFlow } from "@/hooks/useCompleteProfile";
 import { useFileUploader } from "@/hooks/useFileUploader";
 import { CompleteProfile } from "@/types/CompleteProfile";
 import { User } from "@/types/User";
 import { FieldArray, Form, FormikProps } from "formik";
 import { t } from "i18next";
-import React from "react";
+import React, { useState } from "react";
 import { FaFileAlt } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
+import InterestModal from "../../Modals/InterestModal/InterestModal";
 
 const BusinessResumeForm = ({
   formikProps,
   setCurrentForm,
+  profile,
 }: {
   profile: User;
   formikProps: FormikProps<CompleteProfile>;
@@ -32,7 +35,15 @@ const BusinessResumeForm = ({
   const handleAttachments = (files: { file: File; type: null }[]) => {
     setFieldValue("files", [...(values.files || []), ...files]);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const toggleModal = () => setIsModalOpen((prev: boolean) => !prev);
+
+  const { mutateBusinessProfile, isLoading } = useBusinessProfileFlow({
+    ...values,
+    user_id: profile.id,
+    setIsModalOpen:setIsModalOpen
+  });
   return (
     <Form
       className="space-y-4"
@@ -40,7 +51,7 @@ const BusinessResumeForm = ({
         e.preventDefault();
         formikSubmit(e);
         if (isValid) {
-          setCurrentForm((prev) => prev + 1);
+          mutateBusinessProfile();
         }
       }}
     >
@@ -99,6 +110,7 @@ const BusinessResumeForm = ({
         </div>
         <div className="max-w-[450px] mx-auto flex flex-col items-center gap-4 ">
           <Button
+            loading={isLoading}
             type="submit"
             variant="main"
             disabled={
@@ -117,6 +129,7 @@ const BusinessResumeForm = ({
           </Button>{" "}
         </div>
       </div>
+      <InterestModal isOpen={isModalOpen} onCancel={toggleModal} />
     </Form>
   );
 };

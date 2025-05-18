@@ -52,7 +52,7 @@ export const handleLoginSubmit =
         {
           onSuccess: (data) => {
             const token = data.token;
-            Cookies.set("authToken", token, { expires: 7, secure: true });
+            Cookies.set("WAuthToken", token, { expires: 7, secure: true });
             window.location.replace("/");
           },
           onError: (err) => {
@@ -107,7 +107,7 @@ export const handleGoogleLogin = async (
     mutateLoginWithGoogle(email, {
       onSuccess: (data) => {
         const accessToken = data.payload.accessToken;
-        Cookies.set("authToken", accessToken, { expires: 7, secure: true });
+        Cookies.set("WAuthToken", accessToken, { expires: 7, secure: true });
         router.push("/");
       },
       onError: (err) => {
