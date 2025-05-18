@@ -52,7 +52,7 @@ const SuccessPaymentTemplate: React.FC = () => {
             </p>
           </div>
           <Link
-            href="/"
+            href="/login"
             className="inline-block px-8 py-3 bg-orange-500 text-white rounded-full font-semibold text-lg shadow-md hover:bg-orange-600 transform transition-all hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-orange-300 focus:ring-opacity-50 animate-slideUp delay-100"
           >
             Go to login
