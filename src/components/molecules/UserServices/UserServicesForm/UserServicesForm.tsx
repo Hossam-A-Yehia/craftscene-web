@@ -4,7 +4,6 @@ import {
   validationSchema,
 } from "@/components/organisms/UpdateUserServices/ValidationSchema";
 import { Form, Formik } from "formik";
-import { t } from "i18next";
 import React, { useState } from "react";
 import SelectInput from "../../SelectInput/SelectInput";
 import { useFetchUserCategories } from "@/hooks/useCategories";
@@ -18,6 +17,7 @@ import { SUPPLIER } from "@/constants/constants";
 import { toast } from "react-toastify";
 import { containsAnyElement } from "@/utils/generalUtils";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 function UserServicesForm({
   userId,
@@ -31,7 +31,7 @@ function UserServicesForm({
   const [categoryId, setCategoryId] = useState<number[]>([]);
   const lang = useLanguage();
   const queryClient = useQueryClient();
-
+const { t } = useTranslation();
   const { data: userCategoriesData } = useFetchUserCategories(userId);
   const userCategories = userCategoriesData?.data?.payload;
 

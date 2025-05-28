@@ -2,7 +2,6 @@ import React from "react";
 import FormField from "@/components/molecules/FormField/FormField";
 import SelectInput from "@/components/molecules/SelectInput/SelectInput";
 import { useBusinessForm } from "@/hooks/useBusinessForm";
-import { t } from "i18next";
 import RadioGroup from "../RadioGroup/RadioGroup";
 import MultiSelectInput from "../MultiSelectInput/MultiSelectInput";
 import Modal, {
@@ -15,6 +14,7 @@ import Button from "@/components/atoms/Button/Button";
 import { useDisclosure } from "@/hooks/useDisclosure";
 import CoverUpload from "@/components/organisms/CompleteProfileForm/BasicInfoForm/CoverUpload";
 import LogoUpload from "@/components/organisms/CompleteProfileForm/BasicInfoForm/LogoUpload";
+import { useTranslation } from "react-i18next";
 
 interface BusinessDetailsProps {
   values: {
@@ -63,7 +63,7 @@ export function BusinessDetailsSection({
     isFreelance,
   } = useBusinessForm();
   const mapModal = useDisclosure();
-
+  const {t} = useTranslation()
   return (
     <>
       <div className=" max-lg:px-4">

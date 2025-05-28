@@ -2,11 +2,11 @@ import Avatar from "@/components/atoms/Avatar/Avatar";
 import Button from "@/components/atoms/Button/Button";
 import Text from "@/components/atoms/Text/Text";
 import { IoClose } from "react-icons/io5";
-import { t } from "i18next";
 import React, { useState } from "react";
 import Input from "@/components/atoms/Input/Input";
 import { toast } from "react-toastify";
 import { useChangePhoneOrEmail } from "@/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 type ModalContentProps = {
   onConfirm: () => void;
@@ -27,6 +27,7 @@ const VerifyModalContent = ({
   onUpdate,
   isResendPending,
 }: ModalContentProps) => {
+    const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
   const [newValue, setNewValue] = useState("");
   const { mutateAsync, isPending } = useChangePhoneOrEmail();

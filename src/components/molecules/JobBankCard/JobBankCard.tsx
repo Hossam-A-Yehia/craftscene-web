@@ -1,29 +1,28 @@
 import CustomImage from "@/components/atoms/Image/CustomImage";
 import Text from "@/components/atoms/Text/Text";
-import { File } from "@/types/User";
-import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
-import { AiOutlineDownload } from "react-icons/ai";
+import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md";
 
 interface CardProps {
   id: number;
   profileImage: string;
   name: string;
-  files: File[];
   logo: string;
+  location: string;
+  email: string;
+  phone: string;
 }
 
 const JobBankCard: React.FC<CardProps> = ({
   id,
   profileImage,
   name,
-  files,
   logo,
+  location,
+  email,
+  phone,
 }) => {
-  const cvFile = Array.isArray(files)
-    ? files.find((file: File) => file.type === 1)
-    : null;
   return (
     <div className="relative max-w-lg mx-auto bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="relative w-full h-32 ">
@@ -43,44 +42,25 @@ const JobBankCard: React.FC<CardProps> = ({
               fill
             />
           </div>
-          <Link href={`business-user/${id}`}>
-            <Text className=" underline mt-4 text-lg font-semibold text-gray-900 text-center truncate">
+          <Link href={`business-user/${id}?from=job-bank`}>
+            <Text className="underline mt-4 text-lg font-semibold text-gray-900 text-center truncate">
               {name.length > 25 ? `${name.slice(0, 25)}...` : name}
             </Text>
           </Link>
         </div>
-        <div className="mt-6 bg-gray-100 p-4 rounded-lg flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 bg-red-500 text-white rounded-md text-sm font-bold">
-              PDF
-            </div>
-            {cvFile ? (
-              <p
-                className="text-sm font-medium text-gray-700"
-                data-testId="Download CV"
-              >
-                {t("job_bank.download_cv")}
-              </p>
-            ) : (
-              <p
-                className="text-sm font-medium text-gray-700"
-                data-testId="No resume"
-              >
-                {t("job_bank.no_resume")}
-              </p>
-            )}
+        <div className="mt-6 space-y-3">
+          <div className="flex items-center gap-2 text-gray-600">
+            <MdLocationOn className="text-main" size={20} />
+            <Text className="text-sm">{location}</Text>
           </div>
-          {cvFile?.url && (
-            <Link
-              href={cvFile?.url || "#"}
-              download
-              target="_blank"
-              className="text-blue-600 hover:text-blue-700 transition-colors flex items-center"
-              aria-label={`Download ${name}'s CV`}
-            >
-              <AiOutlineDownload size={28} />
-            </Link>
-          )}
+          <div className="flex items-center gap-2 text-gray-600">
+            <MdEmail className="text-main" size={20} />
+            <Text className="text-sm">{email}</Text>
+          </div>
+          <div className="flex items-center gap-2 text-gray-600">
+            <MdPhone className="text-main" size={20} />
+            <Text className="text-sm">{phone}</Text>
+          </div>
         </div>
       </div>
     </div>

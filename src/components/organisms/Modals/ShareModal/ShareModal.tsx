@@ -4,9 +4,10 @@ import React from "react";
 type ShareModalProps = {
   isOpen: boolean;
   onCancel: () => void;
-  img: string;
+  img?: string;
   shareTitle: string;
   url: string;
+  isReferralCode?:boolean
 };
 
 const ShareModal = ({
@@ -15,6 +16,7 @@ const ShareModal = ({
   img,
   shareTitle,
   url,
+  isReferralCode
 }: ShareModalProps) => {
   const handleCancel = () => {
     onCancel();
@@ -42,6 +44,7 @@ const ShareModal = ({
               shareTitle={shareTitle}
               onCancel={handleCancel}
               img={img}
+              isReferralCode={isReferralCode}
             />
           </div>
         </div>

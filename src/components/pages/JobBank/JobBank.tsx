@@ -23,9 +23,11 @@ import { BusinessInfoType } from "@/types/User";
 import { CategoriesData } from "@/types/Organisms";
 import { useFetchServices } from "@/hooks/useServices";
 import { useCountryData } from "@/hooks/useCountryData";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const JobBank = ({ categoriesData }: { categoriesData: any }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const lang = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYearsOfExperience, setSelectedYearsOfExperience] = useState<
     number[]
@@ -141,9 +143,11 @@ const JobBank = ({ categoriesData }: { categoriesData: any }) => {
         <JobBankCard
           id={businessUser?.user?.id}
           profileImage={businessUser?.profile}
+          location={`${businessUser?.city[`name_${lang}`]}`}
           logo={businessUser?.logo}
+          email={businessUser?.business_email}
+          phone={businessUser?.phone}
           name={`${businessUser?.user?.first_name} ${businessUser?.user?.last_name}`}
-          files={businessUser?.files}
         />
       </div>
     ));

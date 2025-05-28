@@ -10,7 +10,7 @@ export const getLikes = async (modelableId: number) => {
 
 export const likeTheModelable = (
   modelableId: number,
-  modelableType: "UserIdea" | "Product" | "BusinessUserDetail"
+  modelableType: "UserIdea" | "Product" | "BusinessUserDetail" | "Post"
 ) => {
   return apiClient.post(`${likesEndpoints.likes}`, {
     modelable_id: modelableId,

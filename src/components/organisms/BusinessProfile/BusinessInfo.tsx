@@ -1,28 +1,33 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { BiMailSend, BiPhone, BiShareAlt } from "react-icons/bi";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaFileDownload } from "react-icons/fa";
 import Text from "@/components/atoms/Text/Text";
 import { BusinessInfoType } from "@/types/User";
 import { useLanguage } from "@/hooks/useLanguage";
 import { USER_TYPE } from "@/constants/constants";
 import { findLabelByValue } from "@/utils/generalUtils";
 import CustomImage from "@/components/atoms/Image/CustomImage";
+import Link from "next/link";
+import { IoArrowBack } from "react-icons/io5";
 
 import ShareModal from "../Modals/ShareModal/ShareModal";
-import { t } from "i18next";
 import { useLike } from "@/hooks/useLike";
+import { useTranslation } from "react-i18next";
+
 export default function BusinessInfo({
   businessInfo,
+  from,
 }: {
   businessInfo: BusinessInfoType;
+  from?: string;
 }) {
+  const { t } = useTranslation();
   const lang = useLanguage();
   const userTypeValue = businessInfo?.user?.user_type;
   const userType = findLabelByValue(userTypeValue, USER_TYPE);
   const [locationPathname, setLocationPathname] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       setLocationPathname(window.location.pathname);
@@ -32,6 +37,7 @@ export default function BusinessInfo({
   const toggleShareModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
   }, []);
+
   const {
     isLiked,
     likes,
@@ -49,6 +55,15 @@ export default function BusinessInfo({
           backgroundImage: `url('${businessInfo?.profile || "/default.png"}')`,
         }}
       >
+        {from === 'job-bank' && (
+          <Link 
+            href="/job-bank" 
+            className="absolute left-5 top-5 bg-white/90 hover:bg-white text-gray-700 px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-300"
+          >
+            <IoArrowBack className="text-lg" />
+            <span>{t("common.back_to_job_bank")}</span>
+          </Link>
+        )}
         <ul className="flex items-center absolute gap-3 flex-col right-5 top-1/2 -translate-y-1/2">
           {businessInfo.business_email && (
             <li className="">
@@ -104,7 +119,7 @@ export default function BusinessInfo({
             </button>
           </li>
         </ul>
-        <div className="info absolute -bottom-[120px] left-1/2 -translate-x-1/2 text-center">
+        <div className={`info absolute ${from === 'job-bank' && businessInfo.files && businessInfo.files.length > 0 ? "-bottom-[176px]" : "-bottom-[120px]"} left-1/2 -translate-x-1/2 text-center`}>
           <div className="w-24 h-24 rounded-full overflow-hidden mb-2 mx-auto relative">
             <CustomImage
               src={businessInfo.logo || "/default.png"}
@@ -126,6 +141,25 @@ export default function BusinessInfo({
               businessInfo.city[`name_${lang}`] || businessInfo.city.name_en
             }`}
           </Text>
+          
+          {/* CV Download Section */}
+          {from === 'job-bank' && businessInfo.files && businessInfo.files.length > 0 ? (
+            <div className="mt-4">
+              <a
+                href={businessInfo.files[0].url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-main text-white px-4 py-2 rounded-lg hover:bg-main/90 transition-colors"
+              >
+                <FaFileDownload className="text-lg" />
+                <span>{t("job_bank.download_cv")}</span>
+              </a>
+            </div>
+          ) : from === 'job-bank' && (
+            <Text className="text-slate-500 text-sm mt-4">
+              {t("job_bank.no_resume")}
+            </Text>
+          )}
         </div>
       </div>
       {locationPathname && (

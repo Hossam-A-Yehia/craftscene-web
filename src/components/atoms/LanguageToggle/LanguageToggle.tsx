@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { MdTranslate } from "react-icons/md";
+import { MdOutlineLanguage, MdTranslate } from "react-icons/md";
 
 const LanguageToggle = () => {
   const { i18n } = useTranslation();
@@ -22,12 +22,12 @@ const LanguageToggle = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-4 py-2 bg-slate-100 shadow-lg text-black border rounded-lg hover:bg-slate-300 transition duration-200"
+      className="flex items-center px-4 py-2 bg-slate-100 shadow-lg text-black border rounded-lg hover:bg-slate-300 transition duration-200"
       aria-label="Toggle Language"
       data-testid="language-toggle-button"
     >
-      <MdTranslate className="text-xl" />
-      <span>{i18n.language === "en" ? "العربية" : "English"}</span>
+      <MdOutlineLanguage className="text-xl" />
+      {/* <span>{i18n.language === "en" ? "العربية" : "English"}</span> */}
     </button>
   );
 };

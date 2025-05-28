@@ -6,10 +6,10 @@ import ProjectGrid from "../ProjectGrid/ProjectGrid";
 import About from "./About";
 import NoDataSection from "@/components/molecules/NoDate/NoDate";
 import { BusinessInfoType, ServicesData } from "@/types/User";
-import { t } from "i18next";
 import Branches from "./Branches";
 import { SERVICE_PROVIDER_FREELANCE, SUPPLIER } from "@/constants/constants";
 import { Branch } from "@/types/Branches";
+import { useTranslation } from "react-i18next";
 
 export default function OverviewSection({
   businessInfo,
@@ -23,7 +23,7 @@ export default function OverviewSection({
   branches: Branch[];
 }) {
   const userType = businessInfo?.user?.user_type;
-
+const { t } = useTranslation();
   const TABS = {
     ABOUT: t("business_profile.about"),
     SERVICE:

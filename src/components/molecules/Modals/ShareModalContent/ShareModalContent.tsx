@@ -18,14 +18,15 @@ import {
 import "./share.css";
 import { FiCheckCircle } from "react-icons/fi";
 import { IoMdMail } from "react-icons/io";
-import { t } from "i18next";
 import Text from "@/components/atoms/Text/Text";
+import { useTranslation } from "react-i18next";
 
 type ModalContentProps = {
   onCancel: () => void;
-  img: string;
+  img?: string;
   shareTitle: string;
   url: string;
+  isReferralCode?:boolean
 };
 
 const ShareModalContent = ({
@@ -33,8 +34,10 @@ const ShareModalContent = ({
   img,
   shareTitle,
   url,
+  isReferralCode
 }: ModalContentProps) => {
-  const shareUrl = `https://craftscene-web.vercel.app/${url}`;
+  const { t } = useTranslation();
+  const shareUrl = isReferralCode ? url:`https://craftscene-web.vercel.app/${url}`;
   const title = t("share.title") + shareTitle;
   const [copied, setCopied] = useState(false);
 
@@ -46,7 +49,7 @@ const ShareModalContent = ({
 
   return (
     <div
-      className="relative py-8 px-12 space-y-6 bg-white rounded-lg text-center shadow-lg max-w-lg mx-auto"
+      className="relative py-8 px-8 space-y-6 bg-white rounded-lg text-center shadow-lg max-w-lg mx-auto"
       data-testid="share-modal-container"
     >
       <button
@@ -58,18 +61,19 @@ const ShareModalContent = ({
         <IoClose size={24} />
       </button>
 
-      <Text className="text-xl font-semibold">
+      <Text className="text-lg font-semibold">
         {t("share.share_this") +
           shareTitle +
           t("share.with_clients_and_friends")}
       </Text>
-      <img
-        src={img}
-        alt="Project thumbnail"
-        className="rounded-md mx-auto"
-        data-testid="share-image"
-      />
-
+      {img && (
+        <img
+          src={img}
+          alt="Project thumbnail"
+          className="rounded-md mx-auto"
+          data-testid="share-image"
+        />
+      )}
       <div className="flex flex-wrap items-center justify-center gap-3">
         <FacebookShareButton url={shareUrl} data-testid="facebook-share">
           <FacebookIcon size={40} round />

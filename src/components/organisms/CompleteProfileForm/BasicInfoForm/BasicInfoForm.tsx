@@ -23,10 +23,10 @@ import { OptionType } from "@/types/Molecules";
 import { Country, User } from "@/types/User";
 import { extractLeafChildren } from "@/utils/getNestedChildren";
 import { Form, FormikErrors, FormikProps } from "formik";
-import { t } from "i18next";
 import React, { useMemo } from "react";
 import CoverUpload from "./CoverUpload";
 import LogoUpload from "./LogoUpload";
+import { useTranslation } from "react-i18next";
 
 const BasicInfoForm = ({
   profile,
@@ -54,7 +54,7 @@ const BasicInfoForm = ({
     UserCategoryTypeEnum[
       UserTypeEnum[profile?.user_type] as keyof typeof UserCategoryTypeEnum
     ];
-
+  const { t } = useTranslation();
   const mapModal = useDisclosure();
 
   const { mutate: validatePhoneEmail, isPending: checkPending } =

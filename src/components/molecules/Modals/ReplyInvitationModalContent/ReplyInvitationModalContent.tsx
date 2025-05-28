@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { t } from "i18next";
 import Button from "@/components/atoms/Button/Button";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -10,6 +9,7 @@ import { useMutateAddReply } from "@/hooks/useRfqs";
 import { MAX_FILE_SIZE } from "@/constants/constants";
 import FileUploadSection from "../../FileUpload/FileUploadSection";
 import { validateFile } from "@/utils/validateFile";
+import { useTranslation } from "react-i18next";
 
 interface FileWithError {
   file: File;
@@ -25,6 +25,7 @@ const ReplyInvitationModalContent: React.FC<ModalContentProps> = ({
   onCancel,
   invitableId,
 }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { mutateAsync, isPending: isSubmitting } = useMutateAddReply();
   const [uploadedFiles, setUploadedFiles] = useState<FileWithError[]>([]);

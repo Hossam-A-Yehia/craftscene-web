@@ -10,8 +10,8 @@ import {
 import { QuotationsType } from "@/types/RFQs";
 import { formatDate } from "@/utils/generalUtils";
 import { useQueryClient } from "@tanstack/react-query";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaRegCommentDots } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -33,6 +33,7 @@ interface ApiError {
 }
 
 const QuotationsCard: React.FC<QuotationsCardProps> = ({ quotation }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const { formattedDate, formattedTime } = formatDate(quotation.created_at);

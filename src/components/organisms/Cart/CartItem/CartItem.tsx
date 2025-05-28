@@ -5,8 +5,8 @@ import {
 } from "@/hooks/useOrders";
 import { CartItemType } from "@/types/Orders";
 import { useQueryClient } from "@tanstack/react-query";
-import { t } from "i18next";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FiMinus, FiPlus, FiTrash2 } from "react-icons/fi";
 import { toast } from "react-toastify";
 
@@ -17,6 +17,7 @@ const CartItem = ({
   item: CartItemType;
   isCheckout?: boolean;
 }) => {
+  const { t } = useTranslation();
   const [quantity, setQuantity] = useState(item.quantity);
   const queryClient = useQueryClient();
   const { mutateAsync: updateQuantity, isPending: isUpdatingQuantity } =

@@ -1,8 +1,8 @@
 import Text from "@/components/atoms/Text/Text";
 import { formatDate } from "@/utils/generalUtils";
-import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FiArrowRight } from "react-icons/fi";
 
 const AsksCard = ({
@@ -22,6 +22,7 @@ const AsksCard = ({
   category?: string;
   username?: string;
 }) => {
+  const {t} = useTranslation()
   const { formattedDate, formattedTime } = formatDate(createdAt);
 
   return (

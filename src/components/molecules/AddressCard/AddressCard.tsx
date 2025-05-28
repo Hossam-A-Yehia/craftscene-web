@@ -4,11 +4,12 @@ import DeleteModal from "@/components/organisms/Modals/DeleteModal/DeleteModal";
 import { useMutateDeleteIdea } from "@/hooks/useAddress";
 import { Address } from "@/types/Address";
 import { useQueryClient } from "@tanstack/react-query";
-import { t } from "i18next";
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 const AddressCard: React.FC<{ address: Address }> = ({ address }) => {
+  const {t} = useTranslation()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const queryClient = useQueryClient();
   const { mutateAsync, isPending } = useMutateDeleteIdea();
@@ -20,10 +21,11 @@ const AddressCard: React.FC<{ address: Address }> = ({ address }) => {
         toast.info(t("Address Deleted Successfully!"));
       })
       .catch((err) => {
-        toast.error(t(err.response.data.message));
+        toast.error(err.response.data.message);
         return err;
       });
   };
+
   const toggle = useCallback(() => {
     setIsModalOpen((prev) => !prev);
   }, []);

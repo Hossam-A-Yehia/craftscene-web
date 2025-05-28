@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { t } from "i18next";
 import Button from "@/components/atoms/Button/Button";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -10,6 +9,7 @@ import { MAX_FILE_SIZE } from "@/constants/constants";
 import FileUploadSection from "../../FileUpload/FileUploadSection";
 import { validateFile } from "@/utils/validateFile";
 import Text from "@/components/atoms/Text/Text";
+import { useTranslation } from "react-i18next";
 
 interface FileWithError {
   file: File;
@@ -27,7 +27,7 @@ const ReplyReceivedAskModalContent: React.FC<ModalContentProps> = ({
 }) => {
   const { mutateAsync, isPending: isSubmitting } = useMutateAddReply();
   const [uploadedFiles, setUploadedFiles] = useState<FileWithError[]>([]);
-
+  const { t } = useTranslation();
   const validationSchema = Yup.object().shape({
     details: Yup.string().required(t("received_ask.validation.details")),
     files: Yup.array()

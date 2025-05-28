@@ -3,7 +3,7 @@ import { Address } from "@/types/Address";
 import { FaEdit } from "react-icons/fa";
 import AddressModal from "../../Modals/AddressModal/AddressModal";
 import React, { useCallback, useState, useEffect } from "react";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 interface DeliveryAddressProps {
   addresses: Address[];
   userId: string;
@@ -15,6 +15,7 @@ export default function DeliveryAddress({
   userId,
   onAddressChange,
 }: DeliveryAddressProps) {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 

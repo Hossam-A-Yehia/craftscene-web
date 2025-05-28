@@ -68,9 +68,6 @@ const SubscriptionCard: React.FC<SubscriptionProps> = ({
           </li>
         ))}
       </ul>
-      <Button variant={"outlineMain"} additionalClasses={`rounded h-12`}>
-        Learn More
-      </Button>
     </div>
   );
 };

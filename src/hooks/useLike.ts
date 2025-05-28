@@ -9,7 +9,7 @@ import { useUser } from "@/context/UserContext";
 
 export const useLike = (
   userId: number,
-  modelableType: "UserIdea" | "Product" | "BusinessUserDetail"
+  modelableType: "UserIdea" | "Product" | "BusinessUserDetail" | "Post"
 ) => {
   const { userData } = useUser();
   const queryClient = useQueryClient();

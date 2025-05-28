@@ -1,7 +1,6 @@
 import { Form, Formik } from "formik";
 import React from "react";
 import MultiSelectInput from "@/components/molecules/MultiSelectInput/MultiSelectInput";
-import { t } from "i18next";
 import Button from "@/components/atoms/Button/Button";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
@@ -11,6 +10,7 @@ import {
   initialValues,
   validationSchema,
 } from "@/components/organisms/UpdateUserCategories/ValidationSchema";
+import { useTranslation } from "react-i18next";
 
 interface UserCategoryFormProps {
   userData: any;
@@ -23,6 +23,7 @@ const UserCategoryForm: React.FC<UserCategoryFormProps> = ({
   mappedCategories,
   userCategoryIds,
 }) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { mutateAsync, isPending: isMutateLoading } =
     useMutateAddUserCategory();

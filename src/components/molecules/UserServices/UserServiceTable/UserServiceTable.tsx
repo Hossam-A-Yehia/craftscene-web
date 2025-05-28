@@ -1,5 +1,5 @@
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaTrash } from "react-icons/fa";
 
 interface Service {
@@ -22,6 +22,8 @@ const UserServiceTable: React.FC<UserServiceTableProps> = ({
   onDelete,
   isMutateDeleteLoading,
 }) => {
+  const { t } = useTranslation();
+  
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
       <table

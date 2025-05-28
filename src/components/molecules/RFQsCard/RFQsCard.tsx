@@ -1,9 +1,9 @@
 import Text from "@/components/atoms/Text/Text";
 import { RFP_STATUS } from "@/constants/constants";
 import { findLabelByValue, formatDate } from "@/utils/generalUtils";
-import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FiArrowRight } from "react-icons/fi";
 
 const RFQsCard = ({
@@ -31,7 +31,7 @@ const RFQsCard = ({
   };
   const statusLabel = findLabelByValue(status, RFP_STATUS);
   const { formattedDate, formattedTime } = formatDate(createdAt);
-
+const { t } = useTranslation();
   return (
     <div
       className="border rounded-lg p-4 shadow-sm bg-white mb-4 flex flex-col gap-4"

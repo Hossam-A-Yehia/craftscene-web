@@ -1,9 +1,9 @@
 import Text from "@/components/atoms/Text/Text";
 import { ORDER_STATUS } from "@/constants/constants";
 import { findLabelByValue } from "@/utils/generalUtils";
-import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FiArrowRight } from "react-icons/fi";
 
 const OrderCard = ({
@@ -21,6 +21,7 @@ const OrderCard = ({
   isIncomingOrders?: boolean;
   clientName?: string;
 }) => {
+  const { t } = useTranslation();
   const statusColor: { [key: string]: string } = {
     1: "text-orange-500",
     4: "text-green-500",

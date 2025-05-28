@@ -10,7 +10,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import NoDataSection from "../NoDate/NoDate";
 import Text from "@/components/atoms/Text/Text";
 import { FaExclamationCircle } from "react-icons/fa";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   title,
@@ -23,7 +23,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(opened);
   const lang = useLanguage();
-
+  const { t } = useTranslation();
   const handleChange = (id: number) => {
     const updatedSelectedIds = selectedOptions.includes(id)
       ? selectedOptions.filter((selectedId) => selectedId !== id)

@@ -17,7 +17,7 @@ export const useMutateRemoveLike = () => {
 
 export const useMutateAddLike = (
   modelableId: number,
-  modelableType: "UserIdea" | "Product" | "BusinessUserDetail"
+  modelableType: "UserIdea" | "Product" | "BusinessUserDetail" | "Post"
 ) => {
   return useMutation({
     mutationFn: () => likeTheModelable(modelableId, modelableType),

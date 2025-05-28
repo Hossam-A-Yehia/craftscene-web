@@ -111,3 +111,6 @@ export const successPayment: Metadata = {
 export const packages: Metadata = {
   title: "Packages  | CraftScene",
 };
+export const blog: Metadata = {
+  title: "Blog  | CraftScene",
+};

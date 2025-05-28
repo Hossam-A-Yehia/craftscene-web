@@ -1,9 +1,9 @@
 import Button from "@/components/atoms/Button/Button";
 import CustomImage from "@/components/atoms/Image/CustomImage";
 import Text from "@/components/atoms/Text/Text";
-import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { BiMailSend, BiPhone } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
 
@@ -26,6 +26,7 @@ const ProfessionalCard: React.FC<CardProps> = ({
   email,
   phone,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="relative w-full max-w-sm mx-auto bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 h-[350px]">
       <div className="relative h-36">

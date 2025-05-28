@@ -31,7 +31,7 @@ const CartItems = ({
 
   return (
     <div className="space-y-6" data-testid="cart-items-container">
-      {products.map((product) => (
+      {products?.map((product) => (
         <div
           className="border rounded-lg bg-white shadow-sm overflow-hidden"
           key={product.id}

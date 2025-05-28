@@ -2,9 +2,11 @@
 import Button from "@/components/atoms/Button/Button";
 import SharedTitle from "@/components/molecules/home/SharedTitle/SharedTitle";
 import SubscriptionCard from "@/components/molecules/home/SubscriptionCard/SubscriptionCard";
+import { useUser } from "@/context/UserContext";
 import { useLanguage } from "@/hooks/useLanguage";
 import { PackageData, PackageType } from "@/types/Packages";
 import { t } from "i18next";
+import Link from "next/link";
 import React from "react";
 
 export default function PackegesSection({
@@ -13,7 +15,7 @@ export default function PackegesSection({
   packegesData: PackageData;
 }) {
   const packeges = packegesData?.payload?.data;
-
+  const { userData } = useUser();
   const lang = useLanguage();
   return (
     <div
@@ -61,14 +63,17 @@ export default function PackegesSection({
           ))}
         </div>
         {packeges && (
-          <div data-testid="see-all-packages-button">
+          <Link
+            href={userData ? `/Subscriptions/${userData?.id}` : "/login"}
+            data-testid="see-all-packages-button"
+          >
             <Button
               variant="outlineMain"
               additionalClasses="mt-8 rounded-lg h-14 font-medium"
             >
               See All Packages
             </Button>
-          </div>
+          </Link>
         )}
       </section>
     </div>

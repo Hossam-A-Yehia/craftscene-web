@@ -8,17 +8,20 @@ import Dropdown from "@/components/atoms/Dropdown/Dropdown";
 import { FiMenu } from "react-icons/fi";
 import { CategoriesData } from "@/types/Organisms";
 import { useLanguage } from "@/hooks/useLanguage";
-import { t } from "i18next";
 import Link from "next/link";
 import ProfileDropdown from "@/components/molecules/ProfileDropdown/ProfileDropdown";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import LanguageToggle from "@/components/atoms/LanguageToggle/LanguageToggle";
 import { useUser } from "@/context/UserContext";
+import NotificationsDropdown from "@/components/molecules/NotificationsDropdown/NotificationsDropdown";
+import { useTranslation } from "react-i18next";
+
 interface HeaderProps {
   categoriesData: CategoriesData;
 }
 const Header: React.FC<HeaderProps> = ({ categoriesData }) => {
+  const {t}=  useTranslation()
   const { userData } = useUser();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +38,6 @@ const Header: React.FC<HeaderProps> = ({ categoriesData }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
   const categories = categoriesData?.payload?.filter(
     (category: CategoriesData) => category.name_en !== "Supplier"
   );
@@ -125,30 +127,33 @@ const Header: React.FC<HeaderProps> = ({ categoriesData }) => {
             {t("home.header.geo")}
           </a>
         </div>
-        {userData ? (
-          <ProfileDropdown
-            userType={userData?.user_type}
-            userId={String(userData?.id)}
-            userName={userData?.username}
-            userTypeValue={userData?.user_type_value || ""}
-            userImage={userData?.business_user_detail?.logo}
-          />
-        ) : (
-          <div className="flex flex-col lg:flex-row gap-2 mt-4 lg:mt-0">
-            <Link href="/login">
-              <Button additionalClasses="font-semibold" variant="main">
-                {t("home.header.login")}
-              </Button>
-            </Link>
-            <Link href="/register">
-              <Button additionalClasses="font-semibold" variant="outlineMain">
-                {t("home.header.signup")}
-              </Button>
-            </Link>
+        <div className="flex items-center">
+          {userData && <NotificationsDropdown />}
+          {userData ? (
+            <ProfileDropdown
+              userType={userData?.user_type}
+              userId={String(userData?.id)}
+              userName={userData?.username}
+              userTypeValue={userData?.user_type_value || ""}
+              userImage={userData?.business_user_detail?.logo}
+            />
+          ) : (
+            <div className="flex flex-col lg:flex-row gap-2 mt-4 lg:mt-0">
+              <Link href="/login">
+                <Button additionalClasses="font-semibold" variant="main">
+                  {t("home.header.login")}
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button additionalClasses="font-semibold" variant="outlineMain">
+                  {t("home.header.signup")}
+                </Button>
+              </Link>
+            </div>
+          )}
+          <div className="mx-3">
+            <LanguageToggle />
           </div>
-        )}
-        <div className="mx-3">
-          <LanguageToggle />
         </div>
       </nav>
     </header>

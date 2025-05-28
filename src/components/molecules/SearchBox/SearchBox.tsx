@@ -2,8 +2,8 @@
 import Button from "@/components/atoms/Button/Button";
 import Head from "@/components/atoms/Head/Head";
 import Input from "@/components/atoms/Input/Input";
-import { t } from "i18next";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function SearchBox({
   name,
@@ -21,7 +21,7 @@ export default function SearchBox({
   categoryTitle?: string;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
-
+const { t } = useTranslation();
   const handleSearchClick = () => {
     onSearch(searchQuery);
   };

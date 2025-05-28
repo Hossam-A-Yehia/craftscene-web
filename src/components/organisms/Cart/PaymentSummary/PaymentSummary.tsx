@@ -1,9 +1,9 @@
 import Button from "@/components/atoms/Button/Button";
 import Text from "@/components/atoms/Text/Text";
 import SummaryRow from "@/components/molecules/SummaryRow/SummaryRow";
-import { t } from "i18next";
 import Link from "next/link";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function PaymentSummary({
   subTotal,
@@ -16,6 +16,7 @@ export default function PaymentSummary({
   isCheckout?: boolean;
   shipping?: string;
 }) {
+  const { t } = useTranslation();
   return (
     <div
       className="w-full bg-white p-6 rounded-lg shadow-sm h-fit"

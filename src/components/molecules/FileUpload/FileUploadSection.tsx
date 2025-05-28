@@ -1,7 +1,7 @@
 import Button from "@/components/atoms/Button/Button";
 import Text from "@/components/atoms/Text/Text";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { BiFile, BiX } from "react-icons/bi";
 
 interface FileWithError {
@@ -20,6 +20,7 @@ const FileUploadSection: React.FC<FileUploadSectionProps> = ({
   handleFileChange,
   removeFile,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col gap-4">
       <div className="w-full p-6 border-2 border-dashed rounded-lg shadow-sm bg-gray-50">

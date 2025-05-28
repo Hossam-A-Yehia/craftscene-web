@@ -1,7 +1,6 @@
 "use client";
 import { Form, Formik } from "formik";
 import React from "react";
-import { t } from "i18next";
 import FormField from "@/components/molecules/FormField/FormField";
 import Alert from "@/components/atoms/Alert/Alert";
 import Button from "@/components/atoms/Button/Button";
@@ -24,12 +23,14 @@ import Modal, {
   ModalHeader,
 } from "@/components/atoms/Modal/Modal";
 import MapComponent from "@/components/molecules/Map/Map";
+import { useTranslation } from "react-i18next";
 
 interface AddAddressFormProps {
   userId: string;
 }
 
 const AddAddressForm: React.FC<AddAddressFormProps> = ({ userId }) => {
+  const { t } = useTranslation();
   const mapModal = useDisclosure();
   const router = useRouter();
   const queryClient = useQueryClient();

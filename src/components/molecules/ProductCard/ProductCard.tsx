@@ -3,7 +3,7 @@ import CustomImage from "@/components/atoms/Image/CustomImage";
 import NavLink from "@/components/atoms/NavLink/NavLink";
 import Text from "@/components/atoms/Text/Text";
 import { IoIosArrowForward } from "react-icons/io";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 interface CardProps {
   imageUrl: string;
@@ -20,6 +20,7 @@ const ProductCard: React.FC<CardProps> = ({
   title,
   supplier,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className="relative w-full max-w-sm mx-auto bg-[#E9E7E72E] hover:shadow-lg transition-shadow duration-300">
       <div className="relative w-full h-[250px] overflow-hidden">

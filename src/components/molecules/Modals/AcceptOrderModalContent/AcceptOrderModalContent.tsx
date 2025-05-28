@@ -1,5 +1,4 @@
 import React from "react";
-import { t } from "i18next";
 import Button from "@/components/atoms/Button/Button";
 import { Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
@@ -7,6 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useMutateAcceptOrder } from "@/hooks/useOrders";
 import { toast } from "react-toastify";
 import FormField from "../../FormField/FormField";
+import { useTranslation } from "react-i18next";
 
 type ProductDetails = {
   id: number;
@@ -32,6 +32,7 @@ const AcceptOrderModalContent = ({
   productsDetails,
   orderId,
 }: ModalContentProps) => {
+    const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   const validationSchema = Yup.object().shape({

@@ -13,7 +13,6 @@ import { GrMapLocation } from "react-icons/gr";
 import { RiQuestionnaireLine } from "react-icons/ri";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Cookies from "js-cookie";
-import { t } from "i18next";
 import { MdDashboard, MdLocationCity } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { AiFillProduct } from "react-icons/ai";
@@ -25,6 +24,7 @@ import {
   SUPPLIER,
 } from "@/constants/constants";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
+import { useTranslation } from "react-i18next";
 
 interface ProfileDropdownProps {
   userName: string;
@@ -41,6 +41,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   userType,
   userId,
 }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -171,6 +172,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
     <div className="relative" ref={dropdownRef}>
       <button
         data-testid="profile-dropdown-button"
+        dir="ltr"
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-4 p-2 hover:bg-gray-100 rounded-lg focus:outline-none transition-colors"
       >
@@ -185,7 +187,9 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
           <Text className="text-md font-semibold whitespace-nowrap">
             {userName}
           </Text>
-          <Text className="text-xs  text-main">{userTypeValue}</Text>
+          <Text className="text-xs text-main">
+            {userTypeValue.length > 20 ? `${userTypeValue.substring(0, 20)}...` : userTypeValue}
+          </Text>
         </div>
         {isOpen ? (
           <FiChevronUp className="w-4 h-4 text-gray-600" />

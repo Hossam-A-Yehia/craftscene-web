@@ -55,11 +55,15 @@ const PackagesTemplate: React.FC<PackagesTemplateProps> = () => {
                   onSuccess: (res) => {
                     toast.success("Subscription successful!");
                     const paymentLink = res?.payload?.payment_link;
-                    if (paymentLink) {
+                    if (
+                      paymentLink ||
+                      process.env.NEXT_PUBLIC_LAUNCH_FREE_DEMO === "false"
+                    ) {
                       window.location.replace(paymentLink);
                       Cookies.remove("signUpToken");
                     } else {
-                      toast.error("Payment link not found.");
+                      window.location.replace("/success-payment");
+                      Cookies.remove("signUpToken");
                     }
                   },
                   onError: (error) => {

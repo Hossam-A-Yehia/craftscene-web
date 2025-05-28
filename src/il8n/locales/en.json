@@ -6,6 +6,9 @@
     "title": "Sorry we couldn't find this page."
   },
   "success_message": "Yours details have been updated successfully.",
+  "common": {
+    "back_to_job_bank": "Back to Job Bank"
+  },
   "user_type": {
     "client": "Client",
     "design_freelance": "Design (Freelance)",
@@ -21,7 +24,8 @@
     "link_copied": "Link Copied!",
     "idea": "idea",
     "product": "product",
-    "profile": "profile"
+    "profile": "profile",
+    "blog": "Blog"
   },
   "auth": {
     "title": "Branding tools designed for your business",
@@ -228,6 +232,9 @@
     },
     "packeages": {
       "title": "Choose a Packages"
+    },
+    "blogs": {
+      "title": "Blogs"
     }
   },
   "ideas": {
@@ -461,7 +468,24 @@
     "referral_code": "Referral Code",
     "share": "Share Your Referral Code",
     "referred_users": "Referred Users",
-    "point": "point"
+    "point": "point",
+    "points": "points",
+    "track_rewards": "Track your rewards and grow your network",
+    "current_points": "Current Points",
+    "current_balance": "Current Balance",
+    "usd": "USD",
+    "share_and_earn": "Share & Earn",
+    "invite_friends": "Invite friends and earn rewards",
+    "your_network": "Your Network",
+    "friends_who_joined": "Friends who joined using your referral",
+    "your_referral_code": "Your referral code",
+    "copy_code": "Copy code",
+    "your_referral_link": "Your referral link",
+    "copy_link": "Copy link",
+    "no_referrals_yet": "No referrals yet",
+    "start_inviting": "Start sharing your referral code to build your network and earn rewards!",
+    "how_it_works": "How it works",
+    "how_it_works_desc": "Share this unique code with friends. When they sign up using your referral code, you'll both receive bonus points and exclusive rewards!"
   },
   "edit_user": {
     "title": "General information",
@@ -788,5 +812,71 @@
     "name_en": "Name EN",
     "name_ar": "Name AR",
     "delete": "Delete"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "no_notifications": "No notifications in this category",
+    "all": "All",
+    "unread": "unread",
+    "mark_all_read": "Mark all read",
+    "settings": "Settings",
+    "view_all": "View all notifications",
+    "just_now": "Just now",
+    "hours_ago": "{{hours}}h ago",
+    "yesterday": "Yesterday",
+    "types": {
+      "invitation": "Invitation",
+      "mention": "Mention",
+      "system": "System",
+      "update": "Update"
+    },
+    "actions": {
+      "mark_as_read": "Mark as read",
+      "delete": "Delete notification"
+    }
+  },
+  "subscription": {
+    "title": "Choose Your Subscription Plan",
+    "description": "Select the package that best fits your needs. Each plan includes a suite of features designed to help you maximize your productivity and success.",
+    "current_subscription": {
+      "title": "Your Current Subscription",
+      "subscription_details": "Subscription Details",
+      "price": "Price",
+      "next_billing_date": "Next Billing Date",
+      "current_usage": "Current Usage",
+      "cancel_subscription": "Cancel Subscription",
+      "cancel_confirmation": {
+        "title": "Cancel Subscription",
+        "message": "Are you sure you want to cancel your subscription? This action cannot be undone.",
+        "confirm": "Yes, Cancel Subscription",
+        "keep": "Keep Subscription"
+      }
+    },
+    "choose_plan": "Choose Your Plan",
+    "current_plan": "Current Plan",
+    "upgrade": "Upgrade",
+    "downgrade": "Downgrade",
+    "select_plan": "Select Plan",
+    "unlock_features": "Unlock more features",
+    "reduced_features": "Reduced features",
+    "subscription_summary": {
+      "title": "Subscription Summary",
+      "important_info": "Important Information",
+      "info_message": "Your subscription will be processed immediately upon submission. This will replace your subscription with the selected plan.",
+      "terms": "By clicking the button above, you agree to our Terms of Service and Privacy Policy."
+    },
+    "need_help": {
+      "title": "Need help choosing a plan?",
+      "contact_sales": "Contact our sales team",
+      "view_faq": "View our pricing FAQ"
+    },
+    "usage": {
+      "ideas": "Ideas Used",
+      "invitations": "Invitations",
+      "cvs": "CVs",
+      "media_uploads": "Media Uploads",
+      "calls": "Calls",
+      "rfps": "RFPs"
+    }
   }
 }

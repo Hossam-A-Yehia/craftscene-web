@@ -3,8 +3,8 @@ import NavLink from "@/components/atoms/NavLink/NavLink";
 import Text from "@/components/atoms/Text/Text";
 import { QuotationsType } from "@/types/RFQs";
 import { formatDate } from "@/utils/generalUtils";
-import { t } from "i18next";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { FaRegCommentDots } from "react-icons/fa";
 
 interface ReplyCardProps {
@@ -13,7 +13,7 @@ interface ReplyCardProps {
 
 const ReplyCard: React.FC<ReplyCardProps> = ({ reply }) => {
   const { formattedDate, formattedTime } = formatDate(reply.created_at);
-
+  const { t } = useTranslation();
   return (
     <div
       className="bg-white shadow-lg rounded-xl p-6 flex items-center justify-between"

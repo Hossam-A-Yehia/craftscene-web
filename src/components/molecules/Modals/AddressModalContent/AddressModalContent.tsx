@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@/components/atoms/Button/Button";
 import { Address } from "@/types/Address";
 import Link from "next/link";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 type ModalContentProps = {
   addresses: Address[];
@@ -25,7 +25,7 @@ const AddressModalContent = ({
   const handleAddressClick = (id: number) => {
     setSelectedAddressId(id);
   };
-
+  const { t } = useTranslation();
   return (
     <div
       className="p-8 space-y-6 bg-white rounded-lg shadow-lg max-w-lg mx-auto transition-all transform scale-100 hover:scale-105"

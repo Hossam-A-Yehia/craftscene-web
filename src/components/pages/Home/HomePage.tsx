@@ -9,12 +9,15 @@ import PackegesSection from "@/components/organisms/home/PackegesSection/Packege
 import { IdeasHome, Packeges, Products } from "@/services/home/Home";
 import { businessUsers } from "@/services/user/user";
 import { PROFESSIONALS, SUPPLIER } from "@/constants/constants";
+import BlogsSection from "@/components/organisms/home/BlogsSection/BlogsSection";
+import { getBlogs } from "@/services/Blogs";
 export default async function HomePage() {
   const ideasData = await IdeasHome();
   const productsData = await Products();
   const professionals = await businessUsers(PROFESSIONALS);
   const suppliers = await businessUsers([SUPPLIER]);
   const packegesData = await Packeges();
+  const blogs = await getBlogs();
 
   return (
     <>
@@ -31,6 +34,9 @@ export default async function HomePage() {
       </Container>
       <Stats />
       <PackegesSection packegesData={packegesData} />
+      <Container>
+      <BlogsSection blogs={blogs} />
+      </Container>
     </>
   );
 }

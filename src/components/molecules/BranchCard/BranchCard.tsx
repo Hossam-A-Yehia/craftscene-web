@@ -4,11 +4,12 @@ import DeleteModal from "@/components/organisms/Modals/DeleteModal/DeleteModal";
 import { useMutateDeleteBranch } from "@/hooks/useBranches";
 import { Branch } from "@/types/Branches";
 import { useQueryClient } from "@tanstack/react-query";
-import { t } from "i18next";
 import React, { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 const BranchCard: React.FC<{ branch: Branch }> = ({ branch }) => {
+  const {t} = useTranslation()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const queryClient = useQueryClient();
   const { mutateAsync, isPending } = useMutateDeleteBranch();

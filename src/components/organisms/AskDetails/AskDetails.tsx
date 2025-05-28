@@ -6,14 +6,15 @@ import { BiCategory, BiTime } from "react-icons/bi";
 import { FaAudioDescription, FaServicestack, FaFile } from "react-icons/fa";
 import { MdSubject } from "react-icons/md";
 import { file_types } from "@/constants/constants";
-import { t } from "i18next";
 import { Ask } from "@/types/Ask";
+import { useTranslation } from "react-i18next";
 
 interface AskDetailsProps {
   ask: Ask;
 }
 
 const AskDetails: FC<AskDetailsProps> = ({ ask }) => {
+  const { t } = useTranslation();
   const { formattedDate, formattedTime } = formatDate(ask.created_at);
   const lang = useLanguage();
 
