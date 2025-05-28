@@ -56,7 +56,7 @@ const {userData:user} = useUser()
       const timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [timeLeft]);
 
   const onSubmit = async (
     values: VerificationRequest,

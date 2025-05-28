@@ -107,7 +107,7 @@ const JobBank = ({ categoriesData }: { categoriesData: any }) => {
           category.name_en === "Craftsman" ||
           category.name_en === "Design-Freelancer"
       ),
-    [categoriesData]
+    [categoriesData, lang]
   );
 
   const { data: servicesData, isLoading: isLoadingServices } = useFetchServices(

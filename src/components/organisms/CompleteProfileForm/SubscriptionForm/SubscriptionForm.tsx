@@ -141,7 +141,18 @@ const SubscriptionForm = ({ formikProps }: SubscriptionFormProps) => {
   const userUsage = packages?.user_usage || ({} as UserUsageType);
   const packageLimits = packages?.package_limits || ({} as PackageLimitsType);
   const currentSubscription = packages?.subscription;
-  const otherPackages = packages?.other_packages || [];
+
+  useEffect(() => {
+    const otherPackages = packages?.other_packages || [];
+    if (otherPackages.length > 0 && !selectedPackage) {
+      const defaultPackage =
+        otherPackages.find(
+          (pkg: PackageType) => pkg.id === currentSubscription?.package_id
+        ) || otherPackages[0];
+      setSelectedPackage(defaultPackage);
+      setFieldValue("package_id", defaultPackage.id);
+    }
+  }, [packages, setFieldValue, currentSubscription, selectedPackage]);
 
   const calculatePercentage = (used: number, limit: number): number => {
     if (limit === 0 || limit === -1) return used > 0 ? 100 : 0;
@@ -205,17 +216,6 @@ const SubscriptionForm = ({ formikProps }: SubscriptionFormProps) => {
       </div>
     );
   };
-
-  useEffect(() => {
-    if (otherPackages.length > 0 && !selectedPackage) {
-      const defaultPackage =
-        otherPackages.find(
-          (pkg: PackageType) => pkg.id === currentSubscription?.package_id
-        ) || otherPackages[0];
-      setSelectedPackage(defaultPackage);
-      setFieldValue("package_id", defaultPackage.id);
-    }
-  }, [otherPackages, setFieldValue, currentSubscription, selectedPackage]);
 
   const getPackageIcon = (price: number) => {
     if (price === 0) return <FaLeaf className="h-7 w-7 text-green-500" />;

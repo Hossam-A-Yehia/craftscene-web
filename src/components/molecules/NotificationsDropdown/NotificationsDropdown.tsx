@@ -44,7 +44,7 @@ const NotificationsDropdown: React.FC = () => {
     if (categories.length > 0 && selectedCategory === null) {
       setSelectedCategory(categories[0].id);
     }
-  }, [categories]);
+  }, [categories, selectedCategory]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
