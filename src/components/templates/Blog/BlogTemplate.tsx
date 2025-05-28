@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { FC, useCallback, useEffect, useState } from "react";
 import Text from "@/components/atoms/Text/Text";
-import { FaHeart, FaRegHeart, FaThumbsUp } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import ShareModal from "@/components/organisms/Modals/ShareModal/ShareModal";
 import { useTranslation } from "react-i18next";

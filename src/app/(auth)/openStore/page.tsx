@@ -47,7 +47,11 @@ const OpenPage = () => {
         }, 1500);
       }
     } catch (err) {
-      setError('Failed to detect device type. Please try again.');
+      setError(
+        typeof err === 'object' && err !== null && 'message' in err
+          ? String((err as { message: unknown }).message)
+          : 'Failed to detect device type. Please try again.'
+      );
       clearInterval(progressInterval);
     } 
     return () => clearInterval(progressInterval);

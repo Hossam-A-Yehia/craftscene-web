@@ -35,8 +35,6 @@ const BusinessProfileLayout: React.FC<BusinessProfileLayoutPageProps> = async ({
 
   // You can use the 'from' parameter here to handle different behaviors
   // For example, if from === 'job-bank', you might want to show different content or styling
-  const isFromJobBank = from === 'job-bank';
-
   return (
     <div className="bg-[#F6F7FC]">
       <Container>

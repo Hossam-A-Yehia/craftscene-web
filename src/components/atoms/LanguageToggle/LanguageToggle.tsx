@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { MdOutlineLanguage, MdTranslate } from "react-icons/md";
+import { MdOutlineLanguage } from "react-icons/md";
 
 const LanguageToggle = () => {
   const { i18n } = useTranslation();

@@ -1,4 +1,3 @@
-import Button from "@/components/atoms/Button/Button";
 import CustomImage from "@/components/atoms/Image/CustomImage";
 import Text from "@/components/atoms/Text/Text";
 import React from "react";

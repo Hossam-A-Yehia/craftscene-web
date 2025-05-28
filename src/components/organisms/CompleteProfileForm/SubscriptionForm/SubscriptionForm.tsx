@@ -132,7 +132,6 @@ const SubscriptionForm = ({ formikProps }: SubscriptionFormProps) => {
   const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(
     null
   );
-  const [showConfirmation, setShowConfirmation] = useState(false);
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const { mutate: cancelPackage, isPending: isSubmitting } =
     useMutateCancelPackages();
@@ -205,19 +204,6 @@ const SubscriptionForm = ({ formikProps }: SubscriptionFormProps) => {
         </div>
       </div>
     );
-  };
-
-  const handleSelectPackage = (pkg: PackageType) => {
-    setSelectedPackage(pkg);
-    setFieldValue("package_id", pkg.id);
-    setShowConfirmation(true);
-
-    setTimeout(() => {
-      const confirmSection = document.getElementById("confirm-section");
-      if (confirmSection) {
-        confirmSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
   };
 
   useEffect(() => {
@@ -661,7 +647,7 @@ const SubscriptionForm = ({ formikProps }: SubscriptionFormProps) => {
       </div> */}
 
       {/* Confirmation Section */}
-      {showConfirmation && selectedPackage && (
+      {selectedPackage && (
         <div
           id="confirm-section"
           className="mb-10 p-8 bg-white rounded-xl border border-gray-200 shadow-sm"

@@ -35,7 +35,11 @@ const ReferralCode: React.FC<ReferralCodeProps> = ({ code }) => {
       }
       setErrorShare("");
     } catch (error) {
-      setErrorShare("Failed to copy. Please try again.");
+      setErrorShare(
+        typeof error === "object" && error !== null && "message" in error
+          ? String((error as { message: unknown }).message)
+          : "Failed to copy. Please try again."
+      );
     }
   };
 
@@ -46,7 +50,11 @@ const ReferralCode: React.FC<ReferralCodeProps> = ({ code }) => {
       setTimeout(() => setLinkCopied(false), 2000);
       setErrorShare("");
     } catch (error) {
-      setErrorShare("Failed to copy link. Please try again.");
+      setErrorShare(
+        typeof error === "object" && error !== null && "message" in error
+          ? String((error as { message: unknown }).message)
+          : "Failed to copy link. Please try again."
+      );
     }
   };
 
