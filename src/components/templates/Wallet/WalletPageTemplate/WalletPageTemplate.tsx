@@ -38,7 +38,7 @@ const {t} = useTranslation()
               <p className="text-3xl font-bold text-gray-800 mb-1">
                 {wallet?.wallet?.current_balance?.toLocaleString() || 0}
               </p>
-              <p className="text-blue-600 font-medium">{t("wallet.points")}</p>
+              <p className="text-gray-400 font-medium">{t("wallet.points")}</p>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ const {t} = useTranslation()
               <p className="text-3xl font-bold text-gray-800 mb-1">
                 ${wallet?.wallet?.current_balance?.toLocaleString() || 0}
               </p>
-              <p className="text-purple-600 font-medium">{t("wallet.usd")}</p>
+              <p className="text-gray-400 font-medium">{t("wallet.usd")}</p>
             </div>
           </div>
         </div>

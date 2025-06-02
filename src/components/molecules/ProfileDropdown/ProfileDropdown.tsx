@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   FaUser,
@@ -25,6 +25,10 @@ import {
 } from "@/constants/constants";
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { useTranslation } from "react-i18next";
+import { BiCopy, BiShare } from "react-icons/bi";
+import { toast } from "react-toastify";
+import { GoGift } from "react-icons/go";
+import ShareModal from "@/components/organisms/Modals/ShareModal/ShareModal";
 
 interface ProfileDropdownProps {
   userName: string;
@@ -32,6 +36,7 @@ interface ProfileDropdownProps {
   userImage?: string;
   userId: string;
   userType: number;
+  referral_code: string;
 }
 
 const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
@@ -40,10 +45,16 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   userImage,
   userType,
   userId,
+  referral_code,
 }) => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleShareModal = useCallback(() => {
+    setIsModalOpen((prev) => !prev);
+  }, []);
 
   const handleLogout = () => {
     Cookies.remove("WAuthToken");
@@ -188,7 +199,9 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
             {userName}
           </Text>
           <Text className="text-xs text-main">
-            {userTypeValue.length > 20 ? `${userTypeValue.substring(0, 20)}...` : userTypeValue}
+            {userTypeValue.length > 20
+              ? `${userTypeValue.substring(0, 20)}...`
+              : userTypeValue}
           </Text>
         </div>
         {isOpen ? (
@@ -203,6 +216,37 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
           data-testid="profile-dropdown-menu"
           className="absolute -right-10 mt-2 w-64 bg-white rounded-lg shadow-lg py-2 z-50 ring-1 ring-gray-200 max-h-[400px] overflow-y-scroll"
         >
+          <div className="px-4 py-2 flex items-center justify-between gap-2 bg-gray-100 flex-col">
+            <div className="flex items-center justify-center w-full gap-4">
+              <GoGift size={40} className="text-main" />
+              <div className="flex flex-col gap-1">
+                <Text className="text-sm  font-bold">Earn Rewards</Text>
+                <Text className="text-xs text-gray-500">
+                  Share your referral code and earn points
+                </Text>
+              </div>
+            </div>
+            <div className="flex items-center justify-between w-full">
+              <span
+                className="text-sm font-medium text-main bg-gray-200 p-1 rounded-lg flex gap-2 items-center cursor-pointer hover:bg-white duration-300"
+                onClick={() => {
+                  navigator.clipboard.writeText(referral_code);
+                  toast.success("Copied!");
+                }}
+              >
+                <BiCopy />
+                {referral_code}
+              </span>
+              <div className="">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-main text-sm flex items-center gap-2 text-white py-1  px-2 rounded-lg"
+                >
+                  <BiShare /> Share now
+                </button>
+              </div>
+            </div>
+          </div>
           {menuItems.map((item, index) => (
             <div onClick={() => setIsOpen(false)} key={index}>
               <Link
@@ -225,6 +269,13 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
           </div>
         </div>
       )}
+      <ShareModal
+        url={referral_code}
+        shareTitle={"Referral Code"}
+        isOpen={isModalOpen}
+        onCancel={toggleShareModal}
+        isReferralCode
+      />
     </div>
   );
 };

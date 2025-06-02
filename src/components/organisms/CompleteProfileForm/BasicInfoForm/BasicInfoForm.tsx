@@ -108,7 +108,7 @@ const BasicInfoForm = ({
             setErrors({
               ...(data.email_exists && {
                 business_email: t(
-                  "business_profile_form.basic_form.Email_already_exists"
+                  "business_profile_form.basic_form.email_already_exists"
                 ),
               }),
               ...(data.phone_exists && {

@@ -24,7 +24,7 @@ interface BusinessDetailsProps {
     hotline: string;
     country_id: string | number;
     city_id: string | number;
-    business_des_en: string;
+    business_des: string;
     business_des_ar: string;
     lat?: number;
     lang?: number;
@@ -112,14 +112,14 @@ export function BusinessDetailsSection({
           onBlur={() => setFieldTouched("phone", true)}
         />
         <FormField
-          id="business_des_en"
-          label={t("update_business_info.business_des_en")}
-          name="business_des_en"
-          touched={touched.business_des_en}
-          errors={errors.business_des_en}
-          value={values.business_des_en}
+          id="business_des"
+          label={t("update_business_info.business_des")}
+          name="business_des"
+          touched={touched.business_des}
+          errors={errors.business_des}
+          value={values.business_des}
           placeholder={t("update_business_info.business_des_placeholder_en")}
-          onBlur={() => setFieldTouched("business_des_en", true)}
+          onBlur={() => setFieldTouched("business_des", true)}
           required
         />
         <FormField

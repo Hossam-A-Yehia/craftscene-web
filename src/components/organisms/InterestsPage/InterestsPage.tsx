@@ -24,6 +24,7 @@ const InterestsPage: React.FC<InterestsPageProps> = ({
   const lang = useLanguage();
   const { mutateAsync, isPending } = useMutateEditInterests();
   const [urlKey, setUrlKey] = useState("");
+console.log(categories);
 
   useEffect(() => {
     // This runs only on the client

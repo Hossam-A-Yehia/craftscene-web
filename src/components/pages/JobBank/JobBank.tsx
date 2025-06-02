@@ -107,7 +107,7 @@ const JobBank = ({ categoriesData }: { categoriesData: any }) => {
           category.name_en === "Craftsman" ||
           category.name_en === "Design-Freelancer"
       ),
-    [categoriesData, lang]
+    [categoriesData]
   );
 
   const { data: servicesData, isLoading: isLoadingServices } = useFetchServices(
@@ -151,7 +151,7 @@ const JobBank = ({ categoriesData }: { categoriesData: any }) => {
         />
       </div>
     ));
-  }, [businessUsers, filterBusinessUsers, isFilterActive, error]);
+  }, [businessUsers, filterBusinessUsers, isFilterActive, error,lang]);
   return (
     <div className="min-h-[calc(100vh-80px)] bg-[#F6F7FC] pt-6">
       <main className="container mx-auto p-4">

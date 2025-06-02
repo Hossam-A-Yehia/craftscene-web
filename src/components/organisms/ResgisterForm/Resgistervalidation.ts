@@ -7,13 +7,11 @@ export const validationSchema = Yup.object()
     first_name: Yup.string()
       .trim()
       .min(3, t("auth.register.first_name_min_length"))
-      .matches(/^[A-Za-z\s]+$/, t("Allows only letters and spaces"))
       .required(t("edit_user.validation.first_name_is_required")),
 
     last_name: Yup.string()
       .trim()
       .min(3, t("auth.register.last_name_min_length"))
-      .matches(/^[A-Za-z\s]+$/, t("Allows only letters and spaces"))
       .required(t("edit_user.validation.last_name_is_required")),
     email: Yup.string()
       .email(t("auth.register.invalid_email"))
@@ -25,9 +23,9 @@ export const validationSchema = Yup.object()
         then: (schema) => schema.required(t("auth.register.email_required")),
       }),
 
-    phone: Yup.string()
-      .matches(/^\+?[0-9]{8,15}$/, t("auth.register.invalid_phone"))
-      .nullable(),
+phone: Yup.string()
+  .matches(/^\+[1-9][0-9]{7,14}$/, t("auth.register.invalid_phone"))
+  .nullable(),
     user_type: Yup.string().required(t("auth.register.user_type_is_required")),
 
     password: Yup.string()

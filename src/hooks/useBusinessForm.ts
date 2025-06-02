@@ -42,7 +42,7 @@ export function useBusinessForm() {
     volume_of_work: 0,
     number_of_employees: 0,
     years_of_experience: 0,
-    business_des_en: "",
+    business_des: "",
     business_des_ar: "",
     logo: "",
     profile: "",
@@ -75,7 +75,7 @@ export function useBusinessForm() {
         years_of_experience:
           userData.business_user_detail.years_of_experience || 0,
         business_des_ar: userData?.business_user_detail.business_des_ar || "",
-        business_des_en: userData?.business_user_detail.business_des_en || "",
+        business_des: userData?.business_user_detail.business_des || "",
         logo: userData?.business_user_detail.logo || "",
         profile: userData?.business_user_detail.profile || "",
       });

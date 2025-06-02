@@ -42,7 +42,10 @@ apiClient.interceptors.response.use(
         );
       }
       if (status === EXCEPTIONS.UNPROCESSABLE) {
-        throw new ExceptionClass("The verification code is invalid");
+        const errors = data?.errors;
+        const firstKey = Object.keys(errors)[0];
+        const firstMessage = errors[firstKey][0];
+        throw new ExceptionClass(firstMessage);
       }
       if (ExceptionClass) {
         throw new ExceptionClass(data?.message || "An error occurred", status);

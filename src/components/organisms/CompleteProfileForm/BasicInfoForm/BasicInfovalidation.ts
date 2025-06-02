@@ -9,10 +9,13 @@ export const BasicInfoValidationSchema = Yup.object().shape({
       "Business name must contain only letters and spaces"
     )
     .required("Business name is required"),
-  business_email: Yup.string().email().matches(/^[\w.-]+@[\w.-]+\.\w+$/, "Invalid email format").required(),
+  business_email: Yup.string()
+    .email()
+    .matches(/^[\w.-]+@[\w.-]+\.\w+$/, "Invalid email format")
+    .required(),
   phone: Yup.string()
     .trim()
-    .matches(/^\+?[0-9]{8,15}$/, t("auth.register.invalid_phone"))
+    .matches(/^\+[1-9][0-9]{7,14}$/, t("auth.register.invalid_phone"))
     .required(t("auth.register.phone_required")),
 
   lat: Yup.number().required(),

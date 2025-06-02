@@ -70,7 +70,6 @@ const Header: React.FC<HeaderProps> = ({ categoriesData }) => {
       toast.error("home.header.access_rfq_massage");
     }
   };
-
   return (
     <header className="flex justify-between items-center bg-white max-h-[80px] py-3 relative gap-2 container mx-auto">
       <Link href="/" className="">
@@ -136,6 +135,7 @@ const Header: React.FC<HeaderProps> = ({ categoriesData }) => {
               userName={userData?.username}
               userTypeValue={userData?.user_type_value || ""}
               userImage={userData?.business_user_detail?.logo}
+              referral_code={userData?.referral_code}
             />
           ) : (
             <div className="flex flex-col lg:flex-row gap-2 mt-4 lg:mt-0">

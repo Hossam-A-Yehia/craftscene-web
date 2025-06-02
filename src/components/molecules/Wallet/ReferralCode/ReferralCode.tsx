@@ -12,36 +12,12 @@ type ReferralCodeProps = {
 const ReferralCode: React.FC<ReferralCodeProps> = ({ code }) => {
   const { t } = useTranslation();
   const [errorShare, setErrorShare] = useState<string>("");
-  const [copied, setCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleShareModal = useCallback(() => {
     setIsModalOpen((prev) => !prev);
   }, []);
-
-  const handleShareClick = async () => {
-    const shareData = {
-      title: "Referral Code",
-      text: `Use my referral code "${code}" and earn rewards!`,
-    };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(shareData.text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      }
-      setErrorShare("");
-    } catch (error) {
-      setErrorShare(
-        typeof error === "object" && error !== null && "message" in error
-          ? String((error as { message: unknown }).message)
-          : "Failed to copy. Please try again."
-      );
-    }
-  };
 
   const handleCopyLink = async () => {
     try {
@@ -87,25 +63,13 @@ const ReferralCode: React.FC<ReferralCodeProps> = ({ code }) => {
               <div data-testid="copy-button-container">
                 <Button
                   variant="main"
-                  onClick={handleShareClick}
-                  additionalClasses={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 ${
-                    copied
-                      ? "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
-                      : ""
-                  }`}
+                  additionalClasses={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 ${"from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"}`}
                   dataTestid="copy-button"
                 >
-                  {copied ? (
-                    <>
-                      <BiCheck className="text-lg" data-testid="check-icon" />
-                      <span className="font-medium">Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <BiCopy className="text-lg" data-testid="copy-icon" />
-                      <span className="font-medium">{t("Copy")}</span>
-                    </>
-                  )}
+                  <>
+                    <BiCopy className="text-lg" data-testid="copy-icon" />
+                    <span className="font-medium">{t("Copy")}</span>
+                  </>
                 </Button>
               </div>
             ) : (
@@ -149,7 +113,7 @@ const ReferralCode: React.FC<ReferralCodeProps> = ({ code }) => {
         </div>
       </div>
 
-      <div className="bg-main   rounded-xl p-4">
+      <div className="bg-[#fff0e9]   rounded-xl p-4">
         <div className="flex items-start gap-3">
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg
@@ -165,8 +129,10 @@ const ReferralCode: React.FC<ReferralCodeProps> = ({ code }) => {
             </svg>
           </div>
           <div>
-            <h4 className="font-semibold text-white mb-1">{t("wallet.how_it_works")}</h4>
-            <p className="text-white text-sm leading-relaxed">
+            <h4 className="font-semibold  mb-1">
+              {t("wallet.how_it_works")}
+            </h4>
+            <p className=" text-sm leading-relaxed">
               {t("wallet.how_it_works_desc")}
             </p>
           </div>
